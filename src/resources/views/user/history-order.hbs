@@ -32,12 +32,12 @@
                               <tbody>
                                 {{#each orders}}
                                 <tr>
-                                  <th scope="row">#{{sliceId this._id 6}}</th>
+                                  <th scope="row" class="align-middle">#{{sliceId this._id 6}}</th>
                                 
-                                  <td>{{getNameProduct this}}<br><a href="/user/history-order/detail-product/{{this._id}}">Xem chi tiết</a></td>
-                                  <td>{{convertPrice this.tongtien}}</td>
-                                  <td>{{convertDate this.createdAt}}</td>
-                                  <td class="text-center">
+                                  <td class="align-middle">{{getNameProduct this}}<br><a href="/user/history-order/detail-product/{{this._id}}">Xem chi tiết</a></td>
+                                  <td class="align-middle">{{convertPrice this.tongtien}}</td>
+                                  <td class="align-middle">{{convertDate this.createdAt}}</td>
+                                  <td class="text-center align-middle">
                                     <span class="text-success">{{#if this.delivered}}Đã nhận hàng vào {{convertDate this.deliveredAt}}</span>
                                     {{else}}
                                         <span class="text-danger">{{#if (checkUndefined this.status)}}Đã hủy vào {{convertDate this.cancelOrderAt}}</span>
@@ -52,7 +52,7 @@
                                         {{/if}}
                                     {{/if}}
                                   </td>
-                                  <td>{{convertDate this.updatedAt}}</td>
+                                  <td class="align-middle">{{convertDate this.updatedAt}}</td>
                                   
                                 </tr>
                                 {{/each}}

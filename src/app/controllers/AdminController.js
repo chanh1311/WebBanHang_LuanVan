@@ -725,7 +725,7 @@ class AdminController {
                 res.redirect("/user/login");
             }else{
                 if(id){
-                    let dataOrders = await Order.findById(id).populate('sanphammua.idProduct').lean();
+                    let dataOrders = await Order.findById(id).populate({ path: 'sanphammua.idProduct', options: { withDeleted: true }}).lean();
                     productInOrders =  dataOrders.sanphammua;
                 }
                 res.render('admin/order/list-product',{layout: 'admin',productInOrders});

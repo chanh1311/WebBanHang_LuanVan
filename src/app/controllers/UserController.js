@@ -65,7 +65,7 @@ class UserController {
             if(!user){
                 res.redirect('/user/login');
             }else{
-                const orders = await Order.find({email: user.email}).populate('sanphammua.idProduct').lean();
+                const orders = await Order.find({email: user.email}).populate({ path: 'sanphammua.idProduct', options: { withDeleted: true }}).lean();
             
                 res.render('user/history-order',{orders,user});
             }
