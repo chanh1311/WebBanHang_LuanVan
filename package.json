@@ -1,0 +1,54 @@
+{
+  "name": "web_f8",
+  "version": "1.0.0",
+  "description": "Web học ở f8",
+  "main": "src/app.js",
+  "scripts": {
+    "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss}",
+    "watch": "node-sass -w src/resources/scss -o src/public/css",
+    "start": "nodemon --inspect src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanh1311/Web_F8.git"
+  },
+  "keywords": [
+    "Web",
+    "f8",
+    "Nodejs"
+  ],
+  "author": "Chanh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanh1311/Web_F8/issues"
+  },
+  "homepage": "https://github.com/chanh1311/Web_F8#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bootstrap-icons": "^1.8.3",
+    "connect-ensure-login": "^0.1.1",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.3",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.2.9",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-sequence": "^5.3.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "node-sass": "^7.0.1",
+    "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "paypal-rest-sdk": "^1.8.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "express-handlebars": "^6.0.3",
+    "lint-staged": "^12.3.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.1"
+  }
+}

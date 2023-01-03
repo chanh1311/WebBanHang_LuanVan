@@ -1,5 +1,4 @@
-package-lock.json
-package.json
+
 node_modules
 nodemon.json
 src/public/css/app.css
