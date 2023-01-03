@@ -1,0 +1,78 @@
+
+<div>
+      <div class="text-center mt-3 font-weight-bold"><h2>DANH SÁCH TÀI KHOẢN</h2></div>
+        {{#if message}}
+            <div class="alert alert-danger text-center" role="alert">
+              {{message}}
+            </div>
+        {{/if}}
+      <table id="dataAccount" class="table table-light" style="width:100%">
+          <thead class="table-dark">
+              <tr>
+                <th scope="col">Mã tài khoản</th>
+                <th scope="col">Tên khách hàng</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Giới tính</th>
+                <th scope="col">Thời gian hoạt động</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Quyền hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#each listAccount}}
+              <tr>
+                 <td style="font-weight: bold;">#{{sliceId this._id 6}}</td>
+                 <td>{{this.fullname}}</td>
+                 <td>{{this.email}}</td>
+                 <td>{{this.phone}}</td>
+                 <td>{{this.gender}}</td>
+                 <td>{{convertDate this.createdAt}}</td>
+                 <td class="text-primary">
+                    {{#if (ifEqualsString this.permistion 'root')}}
+                         Đang hoạt động
+                    {{else}}
+                        {{#if this.status}}
+                        Đang hoạt động
+                        <button class="btn btn-danger btn-sm btn-lock-account" value="{{this._id}}"><i class="fa-solid fa-lock"></i> Khóa</button>
+                        {{else}}
+                        Đã khóa
+                        <button class="btn btn-primary btn-sm btn-unlock-account" value="{{this._id}}"><i class="fa-solid fa-unlock"></i> Mở khóa</button>
+                        {{/if}}
+                    {{/if}}
+                 </td>
+                 <td class="text-danger table-danger">
+                    {{#if (ifEqualsString this.permistion 'root')}}
+                        {{this.permistion}}
+                    {{else}}
+                        {{this.permistion}}
+                        {{#if (ifEqualsString this.permistion 'view')}}
+                            <button class="btn-add-permistion btn btn-primary btn-sm" value="{{this._id}}"></i>Thêm quyền chỉnh sửa</button>
+                        {{else}}
+                            <button class="btn btn-remove-permistion btn-danger btn-sm" value="{{this._id}}"></i>Bỏ quyền chỉnh sửa</button>
+                        {{/if}}
+                    {{/if}}
+                </td>
+                 
+              </tr>
+            {{/each}}
+            </tbody>
+              {{!-- <tfoot class="table-dark">
+                  <tr>
+                       <th scope="col">Mã tài khoản</th>
+                    <th scope="col">Tên khách hàng</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Giới tính</th>
+                    
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col">Quyền hạn</th>
+                  </tr>
+              </tfoot> --}}
+      </table>
+
+                          
+      <form action="" class="form-hidden-account-admin" method="POST" hidden>
+          
+      </form>                    
+</div>

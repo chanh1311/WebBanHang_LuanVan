@@ -1,0 +1,50 @@
+<div class="list-product-order">
+                <div class="text-center"><h4 class="mt-3 mb-2">SẢN PHẨM TRONG ĐƠN HÀNG</h4></div>
+                
+                <table id="dataHistoryOrder" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                           <th scope="col">STT</th>
+                          <th scope="col">Tên sản phẩm</th>
+                          <th scope="col">Hình ảnh sản phẩm</th>
+                           <th scope="col">Giá sản phẩm</th>
+                          <th scope="col">Số lượng mua</th>
+                          <th scope="col">Chi tiết sản phẩm</th>
+                          <th scope="col">Đánh giá sản phẩm</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                        {{#each productInOrders}}
+                        <tr>
+                            <td>{{sum @index 1}}</td>
+                            {{#with idProduct}}
+                            
+                            <td>{{this.tensanpham}}</td>
+                            <td><div class="image-productInOrders"><img src="/images/products/{{this.hinhanh}}" alt="Hình ảnh sản phẩm"></td></div>
+                            <td>{{convertPrice this.gia}}</td>
+                            {{/with}}
+                            <td>{{this.soluongdatmua}}</td>
+                            
+                            {{#with idProduct}}
+                            <td><a href="/admin/product-detail/{{this._id}}" class="btn btn-sm btn-info">Chi tiết sản phẩm</a></td>
+                            <td><a href="/product/{{this.slug}}#review" class="btn btn-primary btn-sm">Xem đánh giá</a></td>
+                            {{/with}}
+                        </tr>
+                        {{/each}}
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <th scope="col">STT</th>
+                               <th scope="col">Tên sản phẩm</th>
+                               <th scope="col">Hình ảnh sản phẩm</th>
+                                <th scope="col">Giá sản phẩm</th>
+                                <th scope="col">Số lượng mua</th>
+                                <th scope="col">Chi tiết sản phẩm</th>
+                                <th scope="col">Đánh giá sản phẩm</th>
+                            </tr>
+                        </tfoot>
+                </table>
+                    
+                
+            </div>

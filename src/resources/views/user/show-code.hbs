@@ -1,0 +1,56 @@
+ <section>
+        <div class="container">
+            <div class="order-history">
+                <ul class="order-history-left">
+                    <li><a href="/user/history-order"><i class="fa-solid fa-list"></i> Danh sách đơn hàng đã mua</a></li>
+                    <li><a href="/user/profile"><i class="fa-solid fa-address-card"></i> Thông tin cá nhân và sổ địa chỉ</a></li>
+                    <li class="active"><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi của bạn</a></li>
+                </ul>
+                <div class="order-history-right">
+                    <div class="order-history-right-top">
+                        <p>Chào anh <span>{{user.fullname}}</span></p>
+                        <ul>
+                            <li><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi</a></li>
+                            <li style="color: rgb(13,110,253);">|</li>
+                            <li><a href="/user/logout">Thoát tài khoản</a></li>
+                        </ul>
+                    </div>
+                    <div class="order-history-right-bottom">
+                        <h4>Mã giảm giá của bạn</h4>
+                        
+                        <table id="dataCode" class="table" style="width:100%">
+                            <thead class="">
+                                <tr>
+                                  <th scope="col">Tên mã</th>
+                                  <th scope="col">Số tiền giảm</th>
+                                  
+                                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {{#with infoCode}}
+                                {{#each this.code}}
+                                <tr>
+                                    {{#if this}}
+                                    {{#with this}}
+                                        <td>{{this.key}}</td>
+                                        <td>{{convertPrice this.value}}</td>
+                                    {{/with}}
+                                    {{/if}}
+                                </tr>
+                                {{/each}}
+                                {{/with}}
+
+
+                                  
+                                </tbody>
+                                
+                        </table>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 

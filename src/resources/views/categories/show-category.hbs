@@ -1,0 +1,379 @@
+{{#each (parsePrice product)}}
+{{/each}}
+ <section class="product-category">
+        <div class="container">
+            <section class="product-category-contain" id="first-page">
+                <div class="product-category-contain-banner">
+                    <div class="product-category-contain-banner-top">
+                        <a href=""><img src="/images/banner-category1.webp" alt=""></a>
+                        <a href=""><img src="/images/banner-category2.webp" alt=""></a>
+                        <a href=""><img src="/images/banner-category3.webp" alt=""></a>
+                        <a href=""><img src="/images/banner-category4.webp" alt=""></a>
+                        <a href=""><img src="/images/banner-category5.webp" alt=""></a>
+                    </div>
+                    <div class="product-category-contain-banner-top-btn" >
+                        <i class="fa-solid fa-chevron-left fa-chevron-left-category"></i>
+                        <i class="fa-solid fa-chevron-right fa-chevron-right-category"></i>
+                    </div>
+                </div> 
+
+                <div class="product-category-contain-banner-bottom">
+                    <li class="active"><h6><b>Iphone 13 Pro Max giá sốc</b></h6></li>
+                    <li><h6><b>Redmi Note 11 giá ưu đãi</b></h6></li>
+                    <li><h6><b>Khuyến mãi cùng với Iphone 11</b></h6></li>
+                    <li><h6><b>Redmi C35 pin khủng</b></h6></li>
+                    <li><h6><b>Nokia G21</b></h6></li>
+                </div> 
+                
+            </section>
+
+            <!-- Display Product -->
+            <section class="product-category-main">
+                <div class="product-category-main-left">
+                    <div class="product-category-main-left-option">
+                        <ul class="option-category">
+                            <h6>Hãng sản xuất</h6>
+                            <div class="form-check category-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckCategoryDefault" {{#if (isUndefined category)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategoryDefault">
+                                    Tất cả
+                                </label>
+                            </div>
+                           
+                            <div class="form-check category-check">
+                                <input class="form-check-input" type="checkbox" value="apple" name="flexCheckCategory[]" id="flexCheckCategory1" {{#if (ifEquals category 'apple')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategory1">
+                                    Apple(Iphone)
+                                </label>
+                            </div>
+                            <div class="form-check category-check">
+                                <input class="form-check-input" type="checkbox" value="samsung" name="flexCheckCategory[]" id="flexCheckCategory2" {{#if (ifEquals category 'samsung')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategory2">
+                                    SamSung
+                                </label>
+                            </div>
+                            <div class="form-check category-check">
+                                <input class="form-check-input" type="checkbox" value="oppo" name="flexCheckCategory[]" id="flexCheckCategory3" {{#if (ifEquals category 'oppo')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategory3">
+                                    Oppo
+                                </label>
+                            </div>
+                            <div class="form-check category-check">
+                                <input class="form-check-input" type="checkbox" value="xiaomi" name="flexCheckCategory[]" id="flexCheckCategory4" {{#if (ifEquals category 'xiaomi')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategory4">
+                                    Xiaomi
+                                </label>
+                            </div>
+                            <div class="form-check category-check">
+                                <input class="form-check-input" type="checkbox" value="huawai" name="flexCheckCategory[]" id="flexCheckCategory5" {{#if (ifEquals category 'huawai')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCategory5">
+                                    Huawai
+                                </label>
+                            </div>
+                        </ul>
+
+                        <ul class="option-price">
+                            <h6>Mức giá</h6>
+                            <div class="form-check price-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckPriceDefault" {{#if (isUndefined price)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPriceDefault">
+                                    Tất cả
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="duoi2trieu" name="flexCheckPrice[]" id="flexCheckPrice1" {{#if (ifEquals price 'duoi2trieu')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPrice1">
+                                    Dưới 2 triệu
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tu2_4trieu" id="flexCheckPrice2" name="flexCheckPrice[]" {{#if (ifEquals price 'tu2_4trieu')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPrice2">
+                                    Từ 2 - 4 triệu
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tu4_7trieu" id="flexCheckPrice3" name="flexCheckPrice[]" {{#if (ifEquals price 'tu4_7trieu')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPrice3">
+                                    Từ 4 - 7 triệu
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tu7_13trieu" id="flexCheckPrice4"  name="flexCheckPrice[]" {{#if (ifEquals price 'tu7_13trieu')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPrice4">
+                                    Từ 7 - 13 triệu
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tren13trieu" id="flexCheckPrice5"  name="flexCheckPrice[]" {{#if (ifEquals price 'tren13trieu')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPrice5">
+                                    Trên 13 triệu
+                                </label>
+                            </div>
+                        </ul>
+
+                        <ul class="option-special">
+                            <h6>Tính năng đặt biệt</h6>
+                            <div class="form-check special-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckSpecialDefault" {{#if (isUndefined special)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckSpecialDefault">
+                                    Tất cả
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="vantay" id="flexCheckSpecial1" name="flexCheckSpecial[]" {{#if (ifEquals special 'vantay')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckSpecial1">
+                                    Bảo mật vân tay
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="nhandang_khuonmat" id="flexCheckSpecial2" name="flexCheckSpecial[]" {{#if (ifEquals special 'nhandang_khuonmat')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckSpecial2">
+                                    Nhận diện khuôn mặt
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="chong_nuocbui" id="flexCheckSpecial3" name="flexCheckSpecial[]" {{#if (ifEquals special 'chong_nuocbui')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckSpecial3">
+                                    Chống nước và bụi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="sac_nhanh" id="flexCheckSpecial4" name="flexCheckSpecial[]" {{#if (ifEquals special 'sac_nhanh')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckSpecial4">
+                                    Sạc nhanh
+                                </label>
+                            </div>
+                        </ul>
+
+                        <ul class="option-camera">
+                            <h6>Camera</h6>
+                            <div class="form-check cam-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckCamDefault" {{#if (isUndefined cam)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCamDefault">
+                                    Tất cả
+                                </label>
+                            </div>    
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="quayphim_slow" id="flexCheckCam1" name="flexCheckCam[]" {{#if (ifEquals cam 'quayphim_slow')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCam1">
+                                    Quay phim slow motion
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="ai_cam" id="flexCheckCam2" name="flexCheckCam[]" {{#if (ifEquals cam 'ai_cam')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCam2">
+                                    Ai camera
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="chup3d" id="flexCheckCam3" name="flexCheckCam[]" {{#if (ifEquals cam 'chup3d')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCam3">
+                                    Chụp 3d
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="hieuung_dep" id="flexCheckCam4" name="flexCheckCam[]" {{#if (ifEquals cam 'hieuung_dep')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCam4">
+                                    Hiệu ứng làm đẹp
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="zoom" id="flexCheckCam5" name="flexCheckCam[]" {{#if (ifEquals cam 'zoom')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckCam5">
+                                    Zoom quang học
+                                </label>
+                            </div>
+                        </ul>
+
+                        <ul class="option-pin">
+                           <h6>Dung lượng PIN</h6>
+                            <div class="form-check pin-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckPinDefault" {{#if (isUndefined pin)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPinDefault">
+                                    Tất cả
+                                </label>
+                            </div>
+                           <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="duoi_3000" id="flexCheckPin1" name="flexCheckPin[]" {{#if (ifEquals pin 'duoi_3000')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPin1">
+                                    Dưới 3000 mah
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tu3000_4000" id="flexCheckPin2" name="flexCheckPin[]" {{#if (ifEquals pin 'tu3000_4000')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPin2">
+                                    Từ 3000 - 4000 mah
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tren4000" id="flexCheckPin3" name="flexCheckPin[]" {{#if (ifEquals pin 'tren4000')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckPin3">
+                                    Siêu trâu: trên 4000 mah
+                                </label>
+                            </div>
+                        </ul>
+
+                        <ul class="option-screen">
+                            <h6>Màn hình</h6>
+                            <div class="form-check screen-all">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckScreenDefault" {{#if (isUndefined screen)}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreenDefault">
+                                    Tất cả
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tranvien" id="flexCheckScreen1" name="flexCheckScreen[]" {{#if (ifEquals screen 'tranvien')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen1">
+                                    Tràn viền
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="taitho" id="flexCheckScreen2" name="flexCheckScreen[]" {{#if (ifEquals screen 'taitho')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen2">
+                                    Tai thỏ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="manhinh_gap" id="flexCheckScreen4" name="flexCheckScreen[]" {{#if (ifEquals screen 'manhinh_gap')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen4">
+                                    Màn hình gập
+                                </label>
+                            </div>
+                             <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="ips" id="flexCheckScreen3" name="flexCheckScreen[]" {{#if (ifEquals screen 'ips')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen3">
+                                    IPS
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="oled" id="flexCheckScreen5" name="flexCheckScreen[]" {{#if (ifEquals screen 'oled')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen5">
+                                    OLED
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="inch6" id="flexCheckScreen6" name="flexCheckScreen[]" {{#if (ifEquals screen 'tren6')}}checked{{/if}}>
+                                <label class="form-check-label" for="flexCheckScreen6">
+                                    6.0 inch
+                                </label>
+                            </div>                              
+                        </ul>
+
+
+                      
+                    </div>
+                </div>
+
+                <div class="product-category-main-right">
+                    <div class="product-category-main-right-title">
+                        <h2>Điện thoại: {{#if key}}<span>{{key}}</span>{{else}}{{#if category}}<span>{{category}}{{else}}Tất cả</span>{{/if}}{{/if}} </h2>
+                    </div>
+                    <div class="product-category-main-right-main">
+                        <div class="product-category-main-right-main-menu">
+                            <div class="product-category-main-right-main-menu-text">
+                                <ul>    
+                                    <li>Xem theo: </li>
+                                </ul>
+                                
+                                <ul class="btn-option">
+                                    <li class="{{#if (ifEquals sortReq 'banchaynhat')}}active{{/if}}"><button value="banchaynhat" type="button" class="sort-elements">Bán chạy nhất</button></li>
+                                    <li class="{{#if (ifEquals sortReq 'giatangdan')}}active{{/if}}"><button type="button" value="giatangdan" class="sort-elements">Giá tăng dần</button></li>
+                                    <li class="{{#if (ifEquals sortReq 'giagiamdan')}}active{{/if}}"><button type="button" value="giagiamdan" class="sort-elements">Giá giảm dần</button></li>
+                                    {{!-- <li><a href="">Ưu đãi online</a></li> --}}
+                                </ul>
+                                
+                                
+                                
+                            </div>
+                            
+                            <div class="product-category-main-right-main-menu-option">
+                                <div class="">
+                                    <select name="" id="sort-elements-select">
+                                        <option value="banchaynhat" {{#if (ifEquals sortReq 'banchaynhat')}}selected{{/if}}>Bán chạy nhất</option>
+                                        <option value="giatangdan" {{#if (ifEquals sortReq 'giatangdan')}}selected{{/if}}>Giá tăng dần</option>
+                                        <option value="giagiamdan" {{#if (ifEquals sortReq 'giagiamdan')}}selected{{/if}}>Giá giảm dần</option>
+                                        {{!-- <option value="">Ưu đãi online</option> --}}
+      
+                                    </select>
+                                </div>
+                                <li class="active"><i class="fa-solid fa-grip"></i></li>
+                                {{!-- <li><i class="fa-solid fa-list"></i></li> --}}
+                            </div>     
+                        </div>
+                        <div class="product-category-main-right-main-product">
+                            {{#if product}}
+                            {{#if (checkLengthThanNum product 9)}}
+                                <div class="product-category-main-right-main-product-items">
+                                    {{#each product}}
+                                        <div class="product-category-main-right-main-product-item product-item-display">
+                                            <img src="/images/products/{{this.hinhanh}}" alt="">
+                                            <a href="/product/{{this.slug}}">
+                                                <div class="product-category-main-right-main-product-item-text">
+                                                    <li><img src="/images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                                    <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                                    <li><span>Online giá rẻ</span></li>
+                                                    <li><span class="price-old">{{this.giagoc}}</span><span> -{{this.giam}}%</span></li>
+                                                    <li><span class="price-new">{{this.gia}} </span></li>
+                                                    <li><span>Quà {{this.giaqua}}</span></li>
+                                                    <li>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </li>
+                                                </div>
+                                            </a>
+                                            
+                                        </div>
+                                    {{/each}}
+                                </div>
+                                <div class="div-btn-loadMore text-center"><button class="btn btn-secondary mb-4 mt-4" id="btn-loadMore">Xem thêm sản phẩm</button>       
+                                </div>
+                                <div class="text-align-right"><a href="#first-page">Về đầu trang</a></div>
+                                {{else}}
+                                    <div class="product-category-main-right-main-product-items">
+                                     {{#each product}}
+                                        <div class="product-category-main-right-main-product-item">
+                                            <img src="/images/products/{{this.hinhanh}}" alt="">
+                                            <a href="/product/{{this.slug}}">
+                                                <div class="product-category-main-right-main-product-item-text">
+                                                    <li><img src="/images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                                    <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                                    <li><span>Online giá rẻ</span></li>
+                                                    <li><span class="price-old">{{this.giagoc}}</span><span> -{{this.giam}}%</span></li>
+                                                    <li><span class="price-new">{{this.gia}} </span></li>
+                                                    <li><span>Quà {{this.giaqua}}</span></li>
+                                                    <li>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </li>
+                                                </div>
+                                            </a>
+                                           
+                                        </div>
+                                    {{/each}}
+                                    </div>
+                                {{/if}}
+                                {{else}}
+                                    <div class="message-empty text-center"><span>Không tìm thấy sản phẩm!</span></div>
+                                {{/if}}    
+                        </div>
+                    </div>
+                   
+                </div>
+            </section>
+
+        </div>
+</section>
+
+
+
+
+
+
+

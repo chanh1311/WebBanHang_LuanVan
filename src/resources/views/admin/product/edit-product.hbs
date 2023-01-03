@@ -1,0 +1,342 @@
+<div class="main p-3">
+        
+        <form action="" method="POST" class="form" id="form-update-product">
+                {{#if message}}
+                    <div class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
+                {{/if}}
+
+                
+                <div class="text-center mt-2"><h2 class="heading">CẬP NHẬT SẢN PHẨM</h2></div>
+                
+                
+                <hr>
+                <div class="main d-flex justify-content-around">
+                    <div class="div-description-left div-item-add-product">
+                            <div class="text-center">
+                                <h6 class="desc">Chi tiết sản phẩm</h6>
+                            </div>
+                    
+                            <div class="spacer"></div>
+                        {{#with product}}
+                        <div class="form-group">
+                            <label for="tensanpham" class="form-label">Tên sản phẩm</label>
+                            <input id="tensanpham" name="tensanpham" type="text" placeholder="VD: Điện thoại Iphone" class="form-control form-control-custom" value="{{this.tensanpham}}">
+                            <span class="form-message"></span>
+                        </div>
+                        {{!-- Mã sản phẩm --}}
+                        <div class="form-group mt-3">
+                            <label for="maloaihang" class="form-label">Loại sản phẩm:</label>
+                            <select name="maloaihang" id="maloaihang" class="form-control form-control-custom">
+                                <option value="">Chọn loại</option>
+                                <option value="apple" {{#if (ifEquals this.maloaihang 'apple')}}selected{{/if}}>Apple</option>
+                                <option value="samsung" {{#if (ifEquals this.maloaihang 'samsung')}}selected{{/if}}>Sam Sung</option>
+                                <option value="xiaomi" {{#if (ifEquals this.maloaihang 'xiaomi')}}selected{{/if}}>Xiaomi</option>
+                                <option value="huawai" {{#if (ifEquals this.maloaihang 'huawai')}}selected{{/if}}>Huawai</option>
+                                <option value="oppo" {{#if (ifEquals this.maloaihang 'oppo')}}selected{{/if}}>Oppo</option>
+                            </select>
+                            <span class="form-message"></span>
+                        </div>
+                        
+                         <div class="form-group mt-3">
+                            <label for="hinhanhold" class="form-label">Hình ảnh</label>
+                            <input id="hinhanhold" name="hinhanhold" type="input" class="form-control" value="{{this.hinhanh}}" hidden>
+                            <img src="/images/products/{{this.hinhanh}}" alt="Không có hình ảnh" style="width:130px;height: 130px;">
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="hinhanh" class="form-label">Chọn hình ảnh mới</label>
+                            <input id="hinhanh" name="hinhanh" type="file" placeholder="" class="form-control form-control-custom" value="{{this.hinhanh}}">
+                            <span class="form-message"></span>
+                        </div>
+                       
+                        <div class="form-group mt-3">
+                            <label for="mota" class="form-label">Mô tả</label>
+                            <textarea id="mota" name="mota" class="form-control form-control-custom">{{this.mota}}</textarea>
+                            <span class="form-message-red invalid form-message" hidden>Vui lòng nhập trường này!</span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="soluong" class="form-label">Số lượng</label>
+                            <input id="soluong" name="soluong" type="number" placeholder="" class="form-control form-control-custom" value="{{this.soluong}}">
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="giagoc" class="form-label">Giá</label>
+                            <input id="giagoc" name="giagoc" type="text" placeholder="" class="form-control form-control-custom" value="{{this.giagoc}}">
+                            <span class="form-message"></span>
+                        </div>
+
+                    
+                        <div class="form-group mt-3">
+                            <label for="giam" class="form-label">Nhập tỉ lệ giảm</label>
+                            <input id="giam" name="giam" type="number" placeholder="VD: 5(5%)" class="form-control form-control-custom" value="{{convertGiam this.giam}}">
+                            <span class="form-message"></span>
+                        </div>
+                    
+                        <div class="form-group mt-3">
+                            <label for="giaqua" class="form-label">Giá phần quà</label>
+                            <input id="giaqua" name="giaqua" type="text" placeholder="" class="form-control form-control-custom" value="{{this.giaqua}}">
+                            <span class="form-message"></span>
+                        </div>
+                    
+                        <div class="form-group mt-3">
+                            <label for="khuyenmai" class="form-label">Khuyến mãi</label>
+                            <input id="khuyenmai" name="khuyenmai" placeholder="" type="text" class="form-control form-control-custom" value="{{this.khuyenmai}}">
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="phukien" class="form-label">Phụ kiện</label>
+                            <input id="phukien" name="phukien" placeholder="" type="text" class="form-control form-control-custom" value="{{this.phukien}}">
+                            <span class="form-message"></span>
+                        </div>
+                        
+                        {{!-- Thời hạn bảo hành--}}
+                        <div class="form-group mt-3">
+                            <label for="thoihanbaohanh" class="form-label">Thời hạn bảo hành:</label>
+                            <select name="thoihanbaohanh" id="thoihanbaohanh" class="form-control form-control-custom">
+                                <option value="">Chọn thời gian</option>
+                                <option value="1" {{#if (ifEqualsString this.thoihanbaohanh '1')}}selected{{/if}}>1</option>
+                                <option value="2" {{#if (ifEqualsString this.thoihanbaohanh '2')}}selected{{/if}}>2</option>
+                                <option value="3" {{#if (ifEqualsString this.thoihanbaohanh '3')}}selected{{/if}}>3</option>
+                                <option value="4" {{#if (ifEqualsString this.thoihanbaohanh '4')}}selected{{/if}}>4</option>
+                                <option value="5" {{#if (ifEqualsString this.thoihanbaohanh '5')}}selected{{/if}}>5</option>
+                            </select>
+                            <span class="form-message"></span>
+                        </div>
+                    {{/with}}
+                        
+                    </div>
+                    <div class="div-description-right div-item-add-product">
+                        <div class="text-center">
+                            <h6 class="desc">Cấu hình sản phẩm</h6>
+                        </div>
+                
+                        <div class="spacer"></div>
+                    {{#with product}}
+                    {{#with cauhinh}}
+                    <div class="form-group">
+                        <label for="manhinh" class="form-label">Màn hình</label>
+                        <input id="manhinh" name="manhinh" type="text" placeholder="" class="form-control form-control-custom" value="{{this.manhinh}}">
+                        <span class="form-message"></span>
+                    </div>
+                 
+                    <div class="form-group mt-3">
+                        <label for="hedieuhanh" class="form-label">Hệ điều hành</label>
+                        <input id="hedieuhanh" name="hedieuhanh" type="text" placeholder="" class="form-control form-control-custom" value="{{this.hedieuhanh}}">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="cameratruoc" class="form-label">Camera trước</label>
+                        <input id="cameratruoc" name="cameratruoc" type="text" placeholder="" class="form-control form-control-custom" value="{{this.cameratruoc}}">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="camerasau" class="form-label">Camera sau</label>
+                        <input id="camerasau" name="camerasau" type="text" placeholder="" class="form-control form-control-custom" value="{{this.camerasau}}">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="chip" class="form-label">CPU</label>
+                        <input id="chip" name="chip" type="text" placeholder="" class="form-control form-control-custom" value="{{this.chip}}">
+                        <span class="form-message"></span>
+                    </div>
+                    
+                    {{!-- RAM --}}
+                    <div class="form-group mt-3">
+                        <label for="ram" class="form-label">Dung lượng RAM</label>
+                        <select name="ram" id="ram" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="1GB" {{#if (ifEqualsString this.RAM '1GB')}}selected{{/if}}>1GB</option>
+                                <option value="2GB" {{#if (ifEqualsString this.RAM '2GB')}}selected{{/if}}>2GB</option>
+                                <option value="3GB" {{#if (ifEqualsString this.RAM '3GB')}}selected{{/if}}>3GB</option>
+                                <option value="4GB" {{#if (ifEqualsString this.RAM '4GB')}}selected{{/if}}>4GB</option>
+                                <option value="5GB" {{#if (ifEqualsString this.RAM '5GB')}}selected{{/if}}>5GB</option>
+                                <option value="6GB" {{#if (ifEqualsString this.RAM '6GB')}}selected{{/if}}>6GB</option>
+                                <option value="8GB" {{#if (ifEqualsString this.RAM '8GB')}}selected{{/if}}>8GB</option>
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                     {{!-- ROM--}}
+                    <div class="form-group mt-3">
+                        <label for="dungluong" class="form-label">Dung lượng ROM</label>
+                        <select name="dungluong" id="dungluong" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="16GB" {{#if (ifEqualsString this.dungluong '16GB')}}selected{{/if}}>16GB</option>
+                                <option value="32GB" {{#if (ifEqualsString this.dungluong '32GB')}}selected{{/if}}>32GB</option>
+                                <option value="64GB" {{#if (ifEqualsString this.dungluong '64GB')}}selected{{/if}}>64GB</option>
+                                <option value="128GB" {{#if (ifEqualsString this.dungluong '128GB')}}selected{{/if}}>128GB</option>
+                                <option value="256GB" {{#if (ifEqualsString this.dungluong '256GB')}}selected{{/if}}>256GB</option>
+                                <option value="512GB" {{#if (ifEqualsString this.dungluong '512GB')}}selected{{/if}}>512GB</option>
+                                
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                    {{!-- Dung lượng PIN --}}
+                    <div class="form-group mt-3">
+                        <label for="pin" class="form-label">Dung lượng PIN</label>
+                        <select name="pin" id="pin" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="1500mah" {{#if (ifEqualsString this.pin '1500mah')}}selected{{/if}}>1500 mah</option>
+                                <option value="2000mah" {{#if (ifEqualsString this.pin '2000mah')}}selected{{/if}}>2000 mah</option>
+                                <option value="2500mah" {{#if (ifEqualsString this.pin '2500mah')}}selected{{/if}}>2500 mah</option>
+                                <option value="3000mah" {{#if (ifEqualsString this.pin '3000mah')}}selected{{/if}}>3000 mah</option>
+                                <option value="3500mah" {{#if (ifEqualsString this.pin '3500mah')}}selected{{/if}}>3500 mah</option>
+                                <option value="4000mah" {{#if (ifEqualsString this.pin '4000mah')}}selected{{/if}}>4000 mah</option>
+                                <option value="4500mah" {{#if (ifEqualsString this.pin '4500mah')}}selected{{/if}}>4500 mah</option>
+                                <option value="5000mah" {{#if (ifEqualsString this.pin '5000mah')}}selected{{/if}}>5000 mah</option>
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                    {{!-- SIM --}}
+                    <div class="form-group mt-3">
+                        <label for="sim" class="form-label">SIM</label>
+                         <input id="sim" name="sim" type="text" placeholder="" class="form-control form-control-custom" value="{{this.sim}}">
+                        <span class="form-message"></span>
+                    </div>
+                
+                    <div class="form-group mt-3">
+                        <label for="sac" class="form-label">Sạc</label>
+                        <input id="sac" name="sac" placeholder="" type="text" class="form-control form-control-custom" value="{{this.sac}}">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="special" class="form-label">Chức năng đặt biệt</label>
+                        <input id="special" name="special" placeholder="" type="text" class="form-control form-control-custom" value="{{this.special}}">
+                        <span class="form-message"></span>
+                    </div>
+                    {{/with }}
+                    <div class="form-group mt-3">
+                        <label for="sliderold" class="form-label">Hình ảnh chi tiết sản phẩm</label>
+                        <div class="d-flex justify-content-between flex-wrap">
+                            {{#if this.slider}}
+                            {{#each this.slider}}
+                                <div style="width: 25%;height: 100%;"><img src="/images/products/{{this}}" alt="Lỗi load ảnh" style="width: 90%;height: 90%;"></div>  
+                            {{/each}}
+                            {{else}}
+                                <div><img src="" alt="Không có hình ảnh"></div>
+                            {{/if}}
+                        </div>
+                       
+                        <input id="sliderold" name="sliderold" type="text" class="form-control" value="{{this.slider}}" hidden>
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="slider" class="form-label">Thay đổi hình ảnh chi tiết sản phẩm(tối đa 5 tấm ảnh)</label>
+                        <input id="slider" name="slider" placeholder="" type="file" class="form-control form-control-custom" value="{{this.slider}}" multiple>
+                        <span class="form-message"></span>
+                    </div>
+                    
+                    {{/with }}
+                    
+                    </div>
+                    
+                </div>
+               
+                
+               {{#with product}}
+                <div class="text-center mt-4"><button class="form-submit btn-submit-update" value="{{this._id}}" type="button">Cập nhật sản phẩm</button></div>
+                {{/with}}
+                
+                
+        </form> 
+        
+        
+      </div>
+
+    {{!-- Validate --}}
+    <script src="/js/validator.js"></script>
+    <script>
+    Validator({
+        form: '#form-update-product',
+        formGroup: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#tensanpham'),
+            Validator.isRequired('#maloaihang'),
+            Validator.isRequired('#soluong'),
+            Validator.isRequired('#giagoc'),
+            Validator.isRequired('#thoihanbaohanh'),
+            
+            // cau hinh
+            Validator.isRequired('#manhinh'),
+            Validator.isRequired('#hedieuhanh'),
+            Validator.isRequired('#cameratruoc'),
+            Validator.isRequired('#camerasau'),
+            Validator.isRequired('#chip'),
+            Validator.isRequired('#ram'),
+            Validator.isRequired('#pin'),
+            Validator.isRequired('#sac'),
+             Validator.isRequired('#sim'),
+             Validator.isRequired('#dungluong'),
+        ],
+          
+      })
+    </script>
+
+   
+
+    {{!-- field mota validate --}}
+    <script type="text/javascript">
+        $( document ).ready(function() {
+               let elementInvalid = $('.invalid');
+               
+               var editor = CKEDITOR.replace( 'mota', {});
+               //Validate when change
+                var events = ['change','input','blur'];
+                for(event of events){
+                    editor.on(event,function(){
+                        if(!editor.getData() || editor.getData() == ''){
+                            elementInvalid.removeAttr('hidden');
+                        }else{
+                            elementInvalid.prop('hidden',true);
+                        }
+                    });
+                }
+            //Validate when submit
+            // update to DB
+   
+        let formUpdateProduct= $('#form-update-product');
+        let btnSubmitUpdate= $('.btn-submit-update');
+    
+        if(formUpdateProduct && btnSubmitUpdate){
+            btnSubmitUpdate .click(function(e){
+                
+                
+                let idProduct = btnSubmitUpdate.val();
+                let url = '/admin/update-product/' + idProduct + '?_method=PUT';
+                
+                
+                formUpdateProduct.attr('action',url);
+                
+                
+                if(editor.getData() && editor.getData() != ''){
+                        formUpdateProduct.submit();
+                }else{
+                    elementInvalid.removeAttr('hidden');
+                }
+                
+                
+            });
+            
+        
+        }
+
+
+            
+
+        });
+    </script>
+
+ 

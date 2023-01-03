@@ -1,0 +1,169 @@
+<form class="mt-4" name="form-select-all" method="post" action="/product/handle-form-actions">
+
+  <div>
+    <h2>Danh sách sản phẩm</h2>
+    <a href="/me/trash/product">Thùng rác ({{deletedCount}})</a>
+
+    <div class="mt-4 d-flex align-items-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="select-all">
+        <label class="form-check-label" for="select-all">
+          Chọn tất cả
+        </label>
+      </div>
+      <select class="form-select form-select-sm select-options" name="action" required>
+        <option value="">--Chọn--</option>
+        <option value="delete" >Xóa</option>
+      </select>
+
+      <button class="btn btn-sm btn-primary btn-checkbox-all" type="submit" disabled>Thực hiện</button>
+    </div>
+  </div>
+
+  <table class="table table-light table-striped">
+    <thead>
+      <tr style="text-align: center;">
+        <th>Chọn</th>
+        <th>STT</th>
+        <th>
+          Tên sản phẩm
+          {{{sortAble 'name' _sort}}}
+        </th>
+        <th>Mô tả</th>
+        <th>
+          Giá
+          {{{sortAble 'price' _sort}}}
+        </th>
+        <th colspan="2">Thao tác</th>       
+      </tr>
+    </thead>
+    <tbody>
+      {{#each product}}
+        <tr>
+          <td>     
+            <input class="form-check-input" type="checkbox" name="idProduct[]" value="{{this._id}}">
+          </td>
+          <td>{{sum @index 1}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.price}}</td>
+          <td><a href="/product/{{this._id}}/edit">Sửa</a></td>
+          <td><a href="" data-bs-toggle="modal" data-bs-target="#delete-product-modal" data-bs-id="{{this._id}}">Xóa</a></td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="6" style="text-align:center;color:red">Không có sản phẩm nào. Nhấp<a href="/product/create"> vào đây</a> để thêm sản phẩm</td>
+        </tr>
+       
+      {{/each}}
+      
+    </tbody>
+  </table>
+
+</form>
+
+
+
+{{!-- Modal --}}
+<div class="modal" tabindex="-1" id="delete-product-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa sản phẩm?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc là sẽ xóa sản phẩm?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-product" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{{!-- script get id when submit botton --}}
+{{!-- Form hidden submit --}}
+<form method="POST" name="delete-product-form">
+</form>
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded',function(){
+      // get checkbox-all
+      var checkboxAll = $('#select-all');
+      // get checkbox in for
+      var checkboxItems =  $('input[name="idProduct[]"]');
+      // get btn-checkboxAll
+      var btnCheckBoxAll = $('.btn-checkbox-all');
+      // get form-select-all
+      var formSelectAll = $('form[name="form-select-all"]');
+      
+
+      //check checked? Change checkAll as check
+      checkboxAll.change(function(){
+        var isChecked = checkboxAll.prop('checked');
+        checkboxItems.prop('checked',isChecked);
+        removeDisabled();
+      })
+      
+      checkboxItems.change(function() {
+        isCheckAllItems = checkboxItems.length === $('input[name="idProduct[]"]:checked').length;
+        checkboxAll.prop('checked',isCheckAllItems);
+         removeDisabled();
+      })
+
+      function removeDisabled(){
+        var checkboxCount = $('input[name="idProduct[]"]:checked').length;
+        if(checkboxCount > 0){
+          btnCheckBoxAll.attr('disabled',false);
+        }else{
+           btnCheckBoxAll.attr('disabled',true);
+        }
+      }
+
+      
+      
+
+
+      //get modal
+      var modal = document.getElementById('delete-product-modal')
+
+      // get form hidden from name
+      var elementForm = document.forms['delete-product-form'];
+
+       // get button Xóa from id
+      var elementDeleTeProduct = document.getElementById('btn-delete-product');
+
+    modal.addEventListener('show.bs.modal', function (event) {
+     
+      // Button that triggered the modal
+      var button = event.relatedTarget
+
+      // Extract info from data-bs-* attributes
+      var id = button.getAttribute('data-bs-id')
+
+      
+     // submit when click OK
+      elementDeleTeProduct.onclick = function(){
+        elementForm.action = '/product/' + id + '/delete?_method=DELETE';
+        elementForm.submit();
+        
+      }
+    });// modal
+    
+
+  });
+</script>
+

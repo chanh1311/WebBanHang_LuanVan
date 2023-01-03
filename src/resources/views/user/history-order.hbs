@@ -1,0 +1,102 @@
+ <section>
+        <div class="container">
+            <div class="order-history">
+                <ul class="order-history-left">
+                    <li class="active"><a href="/user/history-order"><i class="fa-solid fa-list"></i> Danh sách đơn hàng đã mua</a></li>
+                    <li><a href="/user/profile"><i class="fa-solid fa-address-card"></i> Thông tin cá nhân và sổ địa chỉ</a></li>
+                    <li><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi của bạn</a></li>
+                </ul>
+                <div class="order-history-right">
+                    <div class="order-history-right-top">
+                        <p>Chào anh <span>{{user.fullname}}</span></p>
+                        <ul>
+                            <li><a href="/user/change-password"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a></li>
+                            <li style="color: rgb(13,110,253);">|</li>
+                            <li><a href="/user/logout">Thoát tài khoản</a></li>
+                        </ul>
+                    </div>
+                    <div class="order-history-right-bottom">
+                        <h4>Đơn hàng bạn đã mua gần đây</h4>
+                        
+                        <table id="dataHistoryOrder" class="table table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Mã đơn hàng</th>
+                                  <th scope="col">Sản phẩm</th>
+                                  <th scope="col">Tổng số tiền</th>
+                                  <th scope="col">Ngày đặt mua</th>
+                                  <th scope="col">Trạng thái</th>
+                                  <th scope="col">Lần cập nhật cuối</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {{#each orders}}
+                                <tr>
+                                  <th scope="row">#{{sliceId this._id 6}}</th>
+                                
+                                  <td>{{getNameProduct this}}<br><a href="/user/history-order/detail-product/{{this._id}}">Xem chi tiết</a></td>
+                                  <td>{{convertPrice this.tongtien}}</td>
+                                  <td>{{convertDate this.createdAt}}</td>
+                                  <td class="text-center">
+                                    <span class="text-success">{{#if this.delivered}}Đã nhận hàng vào {{convertDate this.deliveredAt}}</span>
+                                    {{else}}
+                                        <span class="text-danger">{{#if (checkUndefined this.status)}}Đã hủy vào {{convertDate this.cancelOrderAt}}</span>
+
+                                        {{else}}
+                                                <span class="text-primary">{{#if this.status}}Đã xác nhận lúc<br>{{convertDate this.confirmedAt}}</span>
+                                                {{else}}
+                                                    <span class="text-dark">Chưa xác nhận</span><br>
+                                                    <a class="btn btn-primary btn-sm mt-2" href="/checkout/change-address/{{this._id}}">Thay đổi địa chỉ</a><br>
+                                                    <button class="btn btn-danger btn-cancel-order btn-sm mt-2" value="{{this._id}}" type="button">Hủy</button>
+                                                {{/if}}
+                                        {{/if}}
+                                    {{/if}}
+                                  </td>
+                                  <td>{{convertDate this.updatedAt}}</td>
+                                  
+                                </tr>
+                                {{/each}}
+
+
+                                  
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="col">Mã đơn hàng</th>
+                                        <th scope="col">Sản phẩm</th>
+                                        <th scope="col">Tổng số tiền</th>
+                                        <th scope="col">Ngày đặt mua</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Lần cập nhật cuối</th>
+                                    </tr>
+                                </tfoot>
+                        </table>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{!-- trick form hidden --}}
+<form class="form-hidden-cancel-order" action="" method="POST" hidden></form>
+<script>
+    $(document).ready(function(){
+        let btnCancel = $('.btn-cancel-order');
+        let formHidden = $('.form-hidden-cancel-order');
+        
+        if(formHidden){
+            $('#dataHistoryOrder').on('click','.btn-cancel-order',function(e){
+                e.preventDefault();
+                let id = btnCancel.val();
+                let url = '/user/cancel-order/' + id + '?_method=PATCH';
+                formHidden.attr('action',url);
+                
+                formHidden.submit();
+                
+            });
+        }
+        
+    });
+    
+</script>

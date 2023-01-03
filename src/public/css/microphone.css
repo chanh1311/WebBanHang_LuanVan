@@ -1,0 +1,36 @@
+
+.microphone i{
+    font-size: 20px;
+}
+#icon-search i {
+    font-size: 19px;
+}
+
+.microphone .recording-icon {
+    display: none;
+    width: 10px;
+    height: 10px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite linear;
+}
+
+.microphone.recording .recording-icon {
+    display: inline-block;
+}
+
+.microphone.recording .fa-microphone {
+    display: none;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 3px 0 rgba(244, 244, 244, .3);
+    }
+    65% {
+        box-shadow: 0 0 3px 5px rgba(244, 244, 244, .3);
+    }
+    100% {
+        box-shadow: 0 0 3px 5px rgba(244, 244, 244, 0);
+    }
+}

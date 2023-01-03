@@ -1,0 +1,13 @@
+const express = require('express');
+const router = express.Router();
+const cartController = require('../app/controllers/CartController');
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+router.get('/show', cartController.show);
+router.delete('/delete/:id',cartController.deleteProductInCart);
+router.post('/apply-code', cartController.applyCode);
+router.get('/add/:id', cartController.addProduct);
+router.post('/addtocart', cartController.addProductToCartNew);
+router.get('/addtocart/:id', cartController.addProductToCart);
+router.get('/reduce/:id', cartController.reduceProduct);
+router.get('/buy/:id',ensureLoggedIn('/user/login'),cartController.buyProduct);
+module.exports = router;

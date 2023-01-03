@@ -1,0 +1,304 @@
+<div class="main p-3">
+        
+        <form action="/admin/add-product" method="POST" class="form" id="form-add-product">
+                {{#if message}}
+                    <div class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
+                {{/if}}
+
+               
+                    
+
+                <div class="text-center mt-2"><h2 class="heading">THÊM SẢN PHẨM</h2></div>
+                
+                
+                <hr>
+                <div class="main d-flex justify-content-around">
+                    <div class="div-description-left div-item-add-product">
+                            <div class="text-center">
+                                <h6 class="desc">Chi tiết sản phẩm</h6>
+                            </div>
+                    
+                            <div class="spacer"></div>
+                       
+                        <div class="form-group">
+                            <label for="tensanpham" class="form-label">Tên sản phẩm</label>
+                            <input id="tensanpham" name="tensanpham" type="text" placeholder="VD: Điện thoại Iphone" class="form-control form-control-custom" value="{{this.tensanpham}}">
+                            <span class="form-message"></span>
+                        </div>
+                        {{!-- Mã sản phẩm --}}
+                        <div class="form-group mt-3">
+                            <label for="maloaihang" class="form-label">Loại sản phẩm:</label>
+                            <select name="maloaihang" id="maloaihang" class="form-control form-control-custom">
+                                <option value="">Chọn loại</option>
+                                <option value="apple">Apple</option>
+                                <option value="samsung">Sam Sung</option>
+                                <option value="xiaomi">Xiaomi</option>
+                                <option value="huawai">Huawai</option>
+                                <option value="oppo">Oppo</option>
+                            </select>
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="hinhanh" class="form-label">Chọn hình ảnh</label>
+                            <input id="hinhanh" name="hinhanh" type="file" placeholder="" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="mota" class="form-label">Mô tả</label>
+                            <textarea id="mota" name="mota" class="form-control form-control-custom"></textarea>
+                            <span class="form-message-red invalid form-message" hidden>Vui lòng nhập trường này!</span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="soluong" class="form-label">Số lượng</label>
+                            <input id="soluong" name="soluong" type="number" placeholder="" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="giagoc" class="form-label">Giá</label>
+                            <input id="giagoc" name="giagoc" type="text" placeholder="" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+
+                    
+                        <div class="form-group mt-3">
+                            <label for="giam" class="form-label">Nhập tỉ lệ giảm</label>
+                            <input id="giam" name="giam" type="number" placeholder="VD: 5(5%)" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+                    
+                        <div class="form-group mt-3">
+                            <label for="giaqua" class="form-label">Giá phần quà</label>
+                            <input id="giaqua" name="giaqua" type="text" placeholder="" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+                    
+                        <div class="form-group mt-3">
+                            <label for="khuyenmai" class="form-label">Khuyến mãi</label>
+                            <input id="khuyenmai" name="khuyenmai" placeholder="" type="text" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="phukien" class="form-label">Phụ kiện</label>
+                            <input id="phukien" name="phukien" placeholder="" type="text" class="form-control form-control-custom" >
+                            <span class="form-message"></span>
+                        </div>
+                        
+                        {{!-- Thời hạn bảo hành--}}
+                        <div class="form-group mt-3">
+                            <label for="thoihanbaohanh" class="form-label">Thời hạn bảo hành:</label>
+                            <select name="thoihanbaohanh" id="thoihanbaohanh" class="form-control form-control-custom">
+                                <option value="">Chọn thời gian</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <span class="form-message"></span>
+                        </div>
+                    
+                        
+                    </div>
+                    <div class="div-description-right div-item-add-product">
+                        <div class="text-center">
+                            <h6 class="desc">Cấu hình sản phẩm</h6>
+                        </div>
+                
+                        <div class="spacer"></div>
+                    
+                    <div class="form-group">
+                        <label for="manhinh" class="form-label">Màn hình</label>
+                        <input id="manhinh" name="manhinh" type="text" placeholder="" class="form-control form-control-custom" >
+                        <span class="form-message"></span>
+                    </div>
+                 
+                    <div class="form-group mt-3">
+                        <label for="hedieuhanh" class="form-label">Hệ điều hành</label>
+                        <input id="hedieuhanh" name="hedieuhanh" type="text" placeholder="" class="form-control form-control-custom" >
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="cameratruoc" class="form-label">Camera trước</label>
+                        <input id="cameratruoc" name="cameratruoc" type="text" placeholder="" class="form-control form-control-custom" >
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="camerasau" class="form-label">Camera sau</label>
+                        <input id="camerasau" name="camerasau" type="text" placeholder="" class="form-control form-control-custom" >
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="chip" class="form-label">CPU</label>
+                        <input id="chip" name="chip" type="text" placeholder="" class="form-control form-control-custom" >
+                        <span class="form-message"></span>
+                    </div>
+                    
+                    {{!-- RAM --}}
+                    <div class="form-group mt-3">
+                        <label for="ram" class="form-label">Dung lượng RAM</label>
+                        <select name="ram" id="ram" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="1GB">1GB</option>
+                                <option value="2GB">2GB</option>
+                                <option value="3GB">3GB</option>
+                                <option value="4GB">4GB</option>
+                                <option value="5GB">5GB</option>
+                                <option value="6GB">6GB</option>
+                                <option value="8GB">8GB</option>
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                     {{!-- ROM--}}
+                    <div class="form-group mt-3">
+                        <label for="dungluong" class="form-label">Dung lượng ROM</label>
+                        <select name="dungluong" id="dungluong" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="16GB">16GB</option>
+                                <option value="32GB">32GB</option>
+                                <option value="64GB">64B</option>
+                                <option value="128GB">128GB</option>
+                                <option value="256GB">256GB</option>
+                                <option value="512GB">512GB</option>
+                                
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                    {{!-- Dung lượng PIN --}}
+                    <div class="form-group mt-3">
+                        <label for="pin" class="form-label">Dung lượng PIN</label>
+                        <select name="pin" id="pin" class="form-control form-control-custom">
+                                <option value="">Chọn Dung lượng</option>
+                                <option value="1500mah">1500 mah</option>
+                                <option value="2000mah">2000 mah</option>
+                                <option value="2500mah">2500 mah</option>
+                                <option value="3000mah">3000 mah</option>
+                                <option value="3500mah">3500 mah</option>
+                                <option value="4000mah">4000 mah</option>
+                                <option value="4500mah">4500 mah</option>
+                                <option value="5000mah">5000 mah</option>
+                        </select>
+                        <span class="form-message"></span>
+                    </div>
+
+                    {{!-- SIM --}}
+                    <div class="form-group mt-3">
+                        <label for="sim" class="form-label">SIM</label>
+                         <input id="sim" name="sim" type="text" placeholder="" class="form-control form-control-custom">
+                        <span class="form-message"></span>
+                    </div>
+                
+                    <div class="form-group mt-3">
+                        <label for="sac" class="form-label">Sạc</label>
+                        <input id="sac" name="sac" placeholder="" type="text" class="form-control form-control-custom">
+                        <span class="form-message"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="special" class="form-label">Chức năng đặt biệt</label>
+                        <input id="special" name="special" placeholder="" type="text" class="form-control form-control-custom">
+                        <span class="form-message"></span>
+                    </div>
+                    
+                    <div class="form-group mt-3">
+                        <label for="slider" class="form-label">Hình ảnh chi tiết sản phẩm(tối đa 5 hình ảnh)</label>
+                        <input id="slider" name="slider" placeholder="" type="file" class="form-control form-control-custom" multiple>
+                        <span class="form-message"></span>
+                    </div>
+                    
+                    </div>
+                    
+                </div>
+               
+                
+               
+                <div class="text-center mt-4"><button id="btn-add-product" class="form-submit form-submit-add" type="submit">Thêm sản phẩm</button></div>
+                
+                
+        </form> 
+        
+        
+      </div>
+
+    {{!-- Validate --}}
+    <script src="/js/validator.js"></script>
+    
+    <script type="text/javascript">
+        $( document ).ready(function() {
+             let elementInvalid = $('.invalid');
+               
+               var editor = CKEDITOR.replace( 'mota');
+                
+               // validation mota when change
+                var events = ['change','input','blur'];
+                for(event of events){
+                    editor.on(event,function(evt){
+
+                        if(!evt.editor.getData() || evt.editor.getData() == ''){
+                            elementInvalid.removeAttr('hidden');
+                        }else{
+                            elementInvalid.prop('hidden',true);
+                        }
+                    });
+                }
+                
+            // validation
+             Validator({
+                form: '#form-add-product',
+                formGroup: '.form-group',
+                errorSelector: '.form-message',
+                fieldData: '#mota',
+                fieldError: '.invalid',
+                data: editor,
+                rules: [
+                
+                
+                    Validator.isRequired('#tensanpham'),
+                    Validator.isRequired('#maloaihang'),
+                    Validator.isRequired('#soluong'),
+                    Validator.isRequired('#giagoc'),
+                    Validator.isRequired('#thoihanbaohanh'),
+                    
+                    // cau hinh
+                    
+                   
+                    
+                    Validator.isRequired('#manhinh'),
+                    Validator.isRequired('#hedieuhanh'),
+                    Validator.isRequired('#cameratruoc'),
+                    Validator.isRequired('#camerasau'),
+                    Validator.isRequired('#chip'),
+                    Validator.isRequired('#ram'),
+                    Validator.isRequired('#pin'),
+                    Validator.isRequired('#sac'),
+                    Validator.isRequired('#sim'),
+                    Validator.isRequired('#dungluong'),
+                    
+                
+                ],
+                
+             });
+
+
+            //validation when submit
+          
+            
+      
+        });
+      
+    </script>
+  
+   
+
+
+

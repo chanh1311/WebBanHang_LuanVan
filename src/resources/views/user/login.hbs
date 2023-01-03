@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    {{!-- ajax --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    {{!-- bootstrap --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+          {{#if message}}
+            <div class="alert alert-danger" role="alert">
+              {{message}}
+          </div>
+          {{/if}}
+          <h3 class="heading">Đăng nhập</h3>
+          <p class="desc">Đăng nhập tài khoản để mua sản phẩm</p>
+      
+          <div class="spacer"></div>
+      
+      
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          
+      
+
+
+          <button class="form-submit">ĐĂNG NHẬP</button>
+          <div class="mt-4">
+            <a href="/user/auth/facebook" style="text-decoration: none; font-size: 16px;"><i style="font-size: 40px;" class="fa-brands fa-facebook"></i><br>Login</a>
+          </div>
+          <div class="mt-3" style="font-size: 14px;">Bạn chưa có tài khoản? <a href="/user/register" class="title-add-acount"> Thêm tài khoản</a></div>
+          
+        </form>
+      </div>
+  
+
+    <script src="/js/validator.js"></script>
+    <script>
+      // Mong muốn của chúng ta
+      // Truyền lần lượt các tham số bên này sang bên kia xử lý
+      // Truyền vào 3 tham số (form-selector,tag-error,rules[])
+      Validator({
+        form: '#form-1',
+        formGroup: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+          Validator.isRequired('#email'),
+          Validator.isEmail('#email'),
+          Validator.isRequired('#password'),
+          Validator.isPassWord('#password',6),
+        ],
+        /*
+        onSubmit: function(data) {
+          // call API
+          console.log(data)
+        }
+        */   
+      })
+    </script>
+      
+    
+</body>
+</html>

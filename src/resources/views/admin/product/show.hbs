@@ -1,0 +1,60 @@
+<div>
+      <div class="text-center mt-4 font-weight-bold"><h2>DANH SÁCH SẢN PHẨM</h2></div>
+       {{#if message}}
+        <div class="alert alert-danger text-center" role="alert">
+            {{message}}
+        </div>
+      {{/if}}
+      <table id="dataProduct" class="table" style="width:100%">
+          <thead class="table-dark">
+              <tr>
+                <th scope="col">Mã sản phẩm</th>
+                <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Hình ảnh</th>
+                <th scope="col">Giá tiền</th>
+                <th scope="col">Ngày thêm sản phẩm</th>
+                <th scope="col">Số lượng còn</th>
+                <th scope="col">Số lượng đã bán</th>
+                <th scope="col"> Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#each products}}
+              <tr>
+                  <td>
+                    <b>#{{sliceId this._id}}</b><br>
+                    <a href="/admin/product-detail/{{this._id}}" class="btn btn-sm btn-info">Xem chi tiết</a>
+                  </td>
+                  <td>{{this.tensanpham}}</td>
+                  <td><div class="image-productInOrders"><img src="/images/products/{{this.hinhanh}}" alt="Hình ảnh sản phẩm"></td></td>
+                  <td>{{convertPrice this.gia}}</td>
+                  
+                  <td>{{convertDate this.createdAt}}</td>
+                  <td>{{this.soluong}}</td>
+                  <td>{{#if this.soluongmua}}{{this.soluongmua}}{{else}}0{{/if}}</td>
+                  <td>
+                    <button class="updateProductAdmin btn btn-primary btn-sm" value="{{this._id}}"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                    <button class="deleteProductAdmin btn btn-danger btn-sm mt-3" value="{{this._id}}"><i class="fa-solid fa-calendar-xmark"></i> Xóa</button>
+                  </td>
+              </tr>
+            {{/each}}
+            </tbody>
+              <tfoot class="table-dark">
+                  <tr>
+                      <th scope="col">Mã sản phẩm</th>
+                      <th scope="col">Tên sản phẩm</th>
+                      <th scope="col">Hình ảnh</th>
+                      <th scope="col">Giá tiền</th>
+                      <th scope="col">Ngày thêm sản phẩm</th>
+                      <th scope="col">Số lượng còn lại</th>
+                      <th scope="col">Số lượng đã bán được</th>
+                      <th scope="col">Thao tác</th>
+                  </tr>
+              </tfoot>
+      </table>
+
+                          
+      <form action="" class="form-hidden-product-admin" method="POST" hidden>
+          
+      </form>                    
+</div>

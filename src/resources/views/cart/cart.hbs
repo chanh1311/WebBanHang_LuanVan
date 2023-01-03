@@ -1,0 +1,275 @@
+
+    <section class="cart">
+        <div class="container">
+        <form action="/checkout" method="POST" id="form-payment-submit">
+            <div class="container-cart">
+                {{#if message}}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{message}}
+                </div>
+                {{/if}}
+                <div class="cart-title">
+                    {{#if countProduct}}
+                    <h3>Có {{countProduct}} sản phẩm trong giỏ hàng</h3>
+                    {{else}}
+                    <div class="text-center"><h4 class="text-danger">Giỏ hàng trống!</h4></div>
+                    {{/if}}
+                </div>
+                
+                <div class="cart-content" {{#if countProduct}}{{else}}hidden{{/if}}>
+                    {{#each productsInCart}}
+                    <div class="cart-product">
+                        <div class="cart-product-main">
+                            <div class="cart-product-main-img">
+                                <img src="/images/products/{{this.hinhanh}}" alt="">
+                            </div>
+                            <div class="cart-product-main-name">
+                                <h4>{{this.tensanpham}}</h4>
+                                <select>
+                                    <option value="white">Màu trắng</option>
+                                    <option value="red">Màu đỏ</option>
+                                    <option value="blue">Màu xanh</option>
+                                </select>
+                                <p class="de-margin-botton">Số sản phẩm còn lại: <b>{{this.soluong}}</b></p>
+                                {{!-- <a href="/cart/delete/{{this._id}}?_method=DELETE" class="color-red"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+                                --}}
+                                <button type="button" class="color-red btn-delete-product" value="{{this._id}}">Xóa <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                
+                                
+
+                            </div>
+                            
+                        </div>
+                    
+                    
+                        <div class="cart-product-right">
+                            <div class="cart-product-right-price">
+                                <p class="color-price">{{convertPrice this.gia}}</p>
+                                <p class="price-old">{{convertPrice this.giagoc}}</p>
+                            </div>
+                            <div class="cart-product-right-amount">
+                                <a href="/cart/reduce/{{this._id}}" class="cart-product-right-amount-left">
+                                    <div >
+                                        <i class="fa-solid fa-minus"></i>
+                                    </div>
+                                </a>
+                                <div>
+                                    <input type="text" class="form-control amoutProducts" id="amoutProducts" aria-describedby="amoutProducts" value="{{this.soluongdatmua}}" readonly>
+                                    {{!-- onkeypress="return isNumberKey(event)" --}}
+                                </div>
+                                <a href="/cart/add/{{this._id}}" class="cart-product-right-amount-right">
+                                    <div >
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="cart-total">
+                        <div class="cart-total-title">
+                            <p>Tạm tính ({{countProduct}} sản phẩm):</p>
+                            <p> {{parsePrice totalPrice}}</p>
+                        </div>
+                        
+                    </div>
+
+                    
+                    <div class="cart-information">
+                        <div class="cart-information-title">
+                            <h5>THÔNG TIN KHÁCH HÀNG</h5>
+                        </div>
+                        <div class="cart-information-main">
+                            <div class="form-group cart-information-main-name">
+                                <label for="fullname">Họ tên khách hàng</label>
+                                <input type="text" class="form-control info-user isvalid" id="fullname" aria-describedby="fullname" value="{{user.fullname}}" name="fullname">
+                                <!-- <small id="address" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                <span class="form-message color-red"></span>
+                            </div>
+                            <div class="form-group cart-information-main-phone">
+                                <label for="num-phone ">Số điện thoại khách hàng</label>
+                                <input type="text" class="form-control info-user isvalid" id="num-phone" value="{{user.phone}}" name="phone">
+                                <span class="form-message color-red"></span>
+                            </div>
+                            <div class="mt-3 cart-total-price alert alert-danger text-center tag-message-info" hidden>
+                                Vui lòng nhập đầy đủ thông tin khách hàng!
+                            </div>
+                        </div>
+                        <div class="cart-information-address">
+                            <h6>Địa chỉ nhận hàng</h6>
+                            {{#with user}}
+                            {{#if address}}
+                            <div class="select-address-default">
+                                {{#each address}}
+                                    <div class="form-check">
+                                        <input class="form-check-input radio-address" type="radio" name="address" id="address1" value="{{@index}}" checked>
+                                        <label class="form-check-label" for="address1">
+                                        {{this}}
+                                        </label>
+                                    </div>
+                                {{/each}}
+                            </div>
+                          
+                            <div class="cart-information-main-btn">
+                                <button id="btnInputAddress" type="button" class="btn btn-outline-primary">Nhập địa chỉ giao hàng <i class="fa-solid fa-arrow-down"></i></button>
+                            </div>
+                        
+                            <div class="form-group cart-information-main-address" hidden>
+                                <label for="fullname">Nhập một địa chỉ giao hàng khác(không bắt buộc)</label>
+                                <input type="text" class="form-control info-address isvalid" id="addressOther" aria-describedby="address" name="addressOther">
+                                <span class="form-message color-red"></span>
+                            </div>
+                            {{else}}
+                            
+                            <div class="form-group cart-information-main-address">
+                                <label for="fullname ">Nhập một địa chỉ giao hàng</label>
+                                <input type="text" class="form-control info-address isvalid" id="addressOther" aria-describedby="address" name="addressOther" required>
+                                <span class="form-message color-red"></span>
+                            </div>
+                            {{/if}}
+                            {{/with}}
+                        </div>
+                    </div>
+                    <div class="method-payment">
+                        <label for="select-payment">Hình thức thanh toán mặc định: </label>
+                        {{!-- <select name="" id="select-payment">
+                            
+                            <option value="1" selected>Thanh toán khi nhận hàng</option>
+                            <option value="2">Thanh toán Online</option>
+                        </select> --}}
+                        <span><b>Thanh toán khi nhận hàng</b></span>
+                    </div>
+
+                    <div class="cart-code">
+                        <button id="discount-code" type="button" class="btn btn-outline-primary"><i class="fa-solid fa-badge-percent"></i> Sử dụng mã giảm giá <i class="fa-solid fa-arrow-down"></i></button>
+                        <div class="cart-code-input" hidden>
+                        
+                            <input type="text" class="form-control" id="discount-code-input" placeholder="Nhập mã giảm giá" name="discount">
+                            <button type="button" class="btn btn-secondary btn-cart-code">Áp dụng</button>
+                            
+                        </div>
+                    </div>
+
+                    <div class="cart-btn">
+                        <input class="total-input" type="text" name="total" value="{{totalPrice}}" hidden>
+                        <p class="title">Tổng tiền</p>
+                        <div>
+                            <p class="color-price total-price">{{parsePrice totalPrice}}</p>
+                            <p class="color-price total-price-new" hidden></p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="alert text-center message-discount" role="alert" hidden>
+                        
+                    </div>
+                    
+                    <div class="btn-payment">
+                        <button type="submit" class="btn btn-danger btn-color-payment btn-order">ĐẶT HÀNG</button>
+                    </div>
+                    <div id="paypal-button-container">
+                        
+                    </div>
+                     <input type="text" class="btn-input-totalUSD" name="totalUSD" value="{{convertUSD totalPrice}}" hidden> 
+                   
+                </div>
+                
+            </div>
+        </form>
+        
+        <form action="" method="post" id="form-hidden-delete"></form>
+        </div>
+        
+    </section>
+
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AS3S0RMHNo7ha3gq_GfZA010VHi0ZS9oowI09l9zjZm_5V8vxs5YaFVScIrPNShrM118QsHdXgqHNKZT&currency=USD"></script>
+{{!-- Validation --}}
+<script src="/js/validator.js"></script>
+<script>
+    Validator({
+    form: '#form-payment-submit',
+    formGroup: '.form-group',
+    errorSelector: '.form-message',
+    rules: [
+        Validator.isRequired('#fullname'),
+        Validator.isRequired('#num-phone'),
+        Validator.isPhone('#num-phone',10),
+    ],
+    });
+    // validation with paypal
+
+    
+</script>
+ {{!-- // ------------------- DELETE PRODUCT IN CART -----------------------// --}}
+<script>
+    $(document).ready(function() {
+        let btnDeleteProductInCart = $('.btn-delete-product');
+        let formHiddenDelete = $('#form-hidden-delete');
+        
+        if(btnDeleteProductInCart && formHiddenDelete){
+            btnDeleteProductInCart.click(function(){
+                let idProduct = $(this).val();
+                let url = '/cart/delete/' + idProduct + '?_method=DELETE';
+                formHiddenDelete.attr('action',url);
+                
+                formHiddenDelete.submit();
+            })
+        }
+        
+    });
+</script>
+{{!-- send ajax code --}}
+<script>
+   $( document ).ready(function(e) {
+        // xai tam thoi
+        let check = false;
+      $('.btn-cart-code').click(function(e){
+        e.preventDefault();
+        if(!check){
+            let value = $('#discount-code-input').val();
+            $.ajax({
+                url: "/cart/apply-code",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({code: value}),
+                success: function(res){
+                    
+                    if(res.response && typeof res.response != 'string'){
+                        
+                        let totalUpdate = $('.total-input').val() - res.response;
+                        $('.total-input').val(totalUpdate);
+                        // update total
+                        totalUpdate = new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND',
+                        }).format(totalUpdate);
+                        $('.total-price').css("text-decoration", "line-through");
+                        $('.total-price-new').text(totalUpdate);
+                        $('.total-price-new').removeAttr('hidden');
+                        $('.message-discount').removeAttr('hidden');
+                        $('.message-discount').text('Áp dụng mã giảm giá thành công!');
+                        $('.message-discount').addClass('alert-success');
+                        check = true;
+                    }else{
+                        $('.message-discount').removeAttr('hidden');
+                        $('.message-discount').text('Mã giảm giá không hợp lệ!');
+                        $('.message-discount').addClass('alert-danger');
+                    }
+                },
+                  
+            });
+        }else{
+            $('.message-discount').removeAttr('hidden');
+            $('.message-discount').text('Chỉ có thể sử dụng một mã giảm giá!');
+            $('.message-discount').addClass('alert-danger');
+        }
+      });  
+
+    });
+</script>
+{{!-- pay with paypal --}}
+<script src="/js/paypal.js">
+</script>

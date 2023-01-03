@@ -1,0 +1,69 @@
+<section>
+<div class="container">
+    <div class="order-history">
+        <ul class="order-history-left">
+            <li class="active"><a href="/user/history-order"><i class="fa-solid fa-list"></i> Danh sách đơn hàng đã mua</a></li>
+            <li><a href="/user/profile"><i class="fa-solid fa-address-card"></i> Thông tin cá nhân và sổ địa chỉ</a></li>
+            <li><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi của bạn</a></li>
+        </ul>
+        <div class="order-history-right">
+            <div class="order-history-right-top">
+                <p>Chào anh <span>Nguyễn Văn Chánh</span></p>
+                <ul>
+                    <li><a href=""><i class="fa-solid fa-message"></i> Phản hồi góp ý</a></li>
+                    <li style="color: rgb(13,110,253);">|</li>
+                    <li><a href="">Thoát tài khoản</a></li>
+                </ul>
+            </div>
+            <div class="order-history-right-bottom">
+                <h4>Sản phẩm trong đơn hàng</h4>
+                
+                <table id="dataHistoryOrder" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                           <th scope="col">STT</th>
+                          <th scope="col">Tên sản phẩm</th>
+                          <th scope="col">Hình ảnh sản phẩm</th>
+                           <th scope="col">Giá sản phẩm</th>
+                          
+                          <th scope="col">Số lượng mua</th>
+                          <th scope="col">Đánh giá sản phẩm</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                        {{#each productInOrders}}
+                        <tr>
+                            <td>{{sum @index 1}}</td>
+                            {{#with idProduct}}
+                            
+                            <td>{{this.tensanpham}}</td>
+                            <td><div class="image-productInOrders"><img src="/images/products/{{this.hinhanh}}" alt="Hình ảnh sản phẩm"></td></div>
+                            <td>{{convertPrice this.gia}}</td>
+                            {{/with}}
+                            <td>{{this.soluongdatmua}}</td>
+                            {{#with idProduct}}
+                            <td><a href="/product/{{this.slug}}#review" class="btn btn-primary btn-sm">Đánh giá</a></td>
+                            {{/with}}
+                        </tr>
+                        {{/each}}
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <th scope="col">STT</th>
+                               <th scope="col">Tên sản phẩm</th>
+                               <th scope="col">Hình ảnh sản phẩm</th>
+                                <th scope="col">Giá sản phẩm</th>
+                                
+                                <th scope="col">Số lượng mua</th>
+                                <th scope="col">Đánh giá sản phẩm</th>
+                            </tr>
+                        </tfoot>
+                </table>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+</section>

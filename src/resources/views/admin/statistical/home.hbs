@@ -1,0 +1,375 @@
+<div class="container">
+
+    <div class="statistical-by-date mt-4 bg-light bg-gradient">
+        <div class="row align-items-center">
+            <div class="col-lg-3">
+            <span><b>Từ ngày:</b> <input type="text" id="datepicker1"></span>
+            </div>
+            <div class="col-lg-3">
+            <span><b>Đến ngày:</b> <input type="text" id="datepicker2"></span>
+            </div>
+             <div class="col-lg-3">
+                <select class="form-select select-date" aria-label="Default select example" id="select-flash">
+                    
+                    <option value="today">Hôm nay</option>
+                    <option value="7dayago">7 ngày trước</option>
+                    <option value="30dayago">30 ngày trước</option>
+                    <option value="monthago">Tháng trước</option>
+                    <option value="month">Tháng này</option>
+                    <option value="year">Năm nay</option>
+                
+                </select>
+                
+            </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+
+            </div>
+            <div class="col-lg-2 mt-3">
+                <button class="btn btn-primary btn-statistical">Thống kê</button>
+               
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+<div class="mt-4">
+    <table class="table table-dark table-detail-product" style="width:100%">
+        
+        <div class="text-center"><h2 class="title-table">Bảng thống kê số liệu (Hôm nay)</h2></div>
+        
+            <thead>
+                <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                
+                </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>Tổng số đơn hàng bán được</td>
+                    <td class="countOrderToday">{{countOrderToday}}</td>
+                </tr>
+
+                <tr>
+                    <td>Tổng số sản phẩm bán được</td>
+                    <td class="productBuyToday">{{productBuyToday}}</td>
+                </tr>
+
+                <tr>
+                    <td>Nhãn hiệu bán chạy nhất</td>
+                    <td class="maxProductByCategory">{{#if maxProductByCategory.categoryMax}}{{maxProductByCategory.categoryMax}} ({{maxProductByCategory.value}}){{else}}Chưa có{{/if}}</td>
+                </tr>
+
+                <tr>
+                    <td>Nhãn hiệu tạo ra doanh thu nhiều nhất</td>
+                    <td class="maxByRevenueCategory">{{#if maxByRevenueCategory.categoryMax}}{{maxByRevenueCategory.categoryMax}} ({{convertPrice maxByRevenueCategory.value}}){{else}}Chưa có{{/if}}</td>
+                </tr>
+            
+                <tr>
+                    <td>Tổng doanh thu</td>
+                    <td class="revenueToday">{{convertPrice revenueToday}}</td>
+                </tr>
+
+                <tr>
+                    <td>Tổng lợi nhuận</td>
+                    <td class="profitToday">{{#if profitToday}}{{convertPrice profitToday}}{{else}}Chưa có{{/if}}</td>
+                </tr>
+            
+            
+            </tbody>
+            
+                <tfoot>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    
+                        
+                    </tr>
+                </tfoot>
+    </table>
+     
+</div>
+
+<div class="mt-4 col-md-12 text-center">
+    <h2 class="titleModel1">Biến động số lượng sản phẩm và số lượng đơn hàng tuần qua</h2>
+     <div id="myLineChart1" style="height: 250px;"></div>
+</div>
+
+<div class="mt-4 col-md-12 text-center">
+    <h2 class="titleModel2">Biến động tổng doanh thu và lợi nhuận tuần qua</h2>
+    <div id="myAreaChart2" style="height: 250px;"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $( function() {
+        $( "#datepicker1" ).datepicker();
+    } );
+      $( function() {
+        $( "#datepicker2" ).datepicker();
+    } );
+</script>
+
+{{!-- send ajax --}}
+<script>
+    $(document).ready(function(){
+        let btnStatistical = $('.btn-statistical');
+        
+        
+        let convertPrice = (price) => {
+            price = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+            }).format(price);
+        
+            return price;
+        }
+        if(btnStatistical){
+            btnStatistical.click(function(e){
+                let fromDate = $('#datepicker1').val();
+                let toDate = $('#datepicker2').val();
+
+                // send
+                 $.ajax({
+                        url: "/admin/statistical-by-date",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({fromDate,toDate}),
+                        success: function(res){
+                            
+                            let countOrderToday = res.countOrderToday ? res.countOrderToday: 0;
+                            let productBuyToday = res.productBuyToday ? res.productBuyToday: 0;
+                            let maxProductByCategory = res.maxProductByCategory ? res.maxProductByCategory : null;
+                            let maxByRevenueCategory = res.maxByRevenueCategory ? res.maxByRevenueCategory : null;
+                            let revenueToday = res.revenueToday ? res.revenueToday : 0;
+                            let profitToday = res.profitToday ? res.profitToday: 0;
+                            let titleTable = `Bảng thông kê số liệu (${res.fromDate} - ${res.toDate})`;
+                            let titleModel1 = `Biến động số lượng sản phẩm và số lượng đơn hàng (${res.fromDate} - ${res.toDate})`;
+                            let titleModel2 = `Biến động tổng doanh thu và lợi nhuận (${res.fromDate} - ${res.toDate})`;
+
+                            $('.countOrderToday').text(`${countOrderToday} đơn`);
+                            $('.productBuyToday').text(`${productBuyToday} sản phẩm`);
+                            $('.maxProductByCategory').text(maxProductByCategory ? `${maxProductByCategory.categoryMax} (${maxProductByCategory.value})` : 'Không có');
+                            $('.maxByRevenueCategory').text(maxByRevenueCategory ? `${maxByRevenueCategory.categoryMax} (${convertPrice(maxByRevenueCategory.value)})`: 'Không có');
+                            $('.revenueToday').text(convertPrice(revenueToday));
+                            $('.profitToday').text(convertPrice(profitToday));
+                            $('.title-table').text(titleTable);
+
+                            $('.option-custome').attr('selected',true);
+
+                            // Update data table
+                            let ordersToday = res.ordersToday;
+                            let objOrderBuy = {};
+                            let objProductBuy = {};
+                            let objRevenue = {};
+                            let objProfit = {};
+                            // logic
+                            if(ordersToday){
+                                    ordersToday.forEach(function(v) {
+                                        objOrderBuy[convertDate(v.deliveredAt)] = (objOrderBuy[convertDate(v.deliveredAt)] || 0) + 1;
+                                        for(let obj of v.sanphammua){
+                                            objProductBuy[convertDate(v.deliveredAt)] = ( objProductBuy[convertDate(v.deliveredAt)] || 0) + obj.soluongdatmua;
+                                        }
+                                        objRevenue[convertDate(v.deliveredAt)] =  (objRevenue[convertDate(v.deliveredAt)] || 0) + v.tongtien;
+                                        objProfit[convertDate(v.deliveredAt)] =  (objProfit[convertDate(v.deliveredAt)] || 0) + Math.round(v.tongtien * 13/100);       
+                                    });
+                                    // make data
+                                    let dataProductAndOrder = [];
+                                    for (const property in objOrderBuy) {
+                                        let obj = {date: property,order: objOrderBuy[property],product: objProductBuy[property]};
+                                        dataProductAndOrder.push(obj);
+                                    }
+                                    let dataRevenueAndProfit = [];
+                                    for (const property in objRevenue) {
+                                        let obj = {date: property,revenue: objRevenue[property],profit: objProfit[property]};
+                                        dataRevenueAndProfit.push(obj);
+                                    }
+                                morisLine.setData(dataProductAndOrder);
+                                $('.titleModel1').text(titleModel1);
+                                
+                                morisArea.setData(dataRevenueAndProfit);
+                                $('.titleModel2').text(titleModel2);
+                            }
+                                
+                        },
+                        error: function(res){
+                            console.log('Error');
+                        }
+                    });  
+                
+            });
+        }
+
+        let selectDate = $('.select-date');
+        
+        selectDate.change(function(e){
+            let value = $(this).val();
+            
+            // send
+            $.ajax({
+                url: "/admin/statistical-by-date",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({selectDate: value}),
+                success: function(res){
+                        let countOrderToday = res.countOrderToday ? res.countOrderToday: 0;
+                            let productBuyToday = res.productBuyToday ? res.productBuyToday: 0;
+                            let maxProductByCategory = res.maxProductByCategory ? res.maxProductByCategory : null;
+                            let maxByRevenueCategory = res.maxByRevenueCategory ? res.maxByRevenueCategory : null;
+                            let revenueToday = res.revenueToday ? res.revenueToday : 0;
+                            let profitToday = res.profitToday ? res.profitToday: 0;
+                            let titleTable = `Bảng thông kê số liệu (${res.fromDate} - ${res.toDate})`;
+                            let titleModel1 = `Biến động số lượng sản phẩm và số lượng đơn hàng (${res.fromDate} - ${res.toDate})`;
+                            let titleModel2 = `Biến động tổng doanh thu và lợi nhuận (${res.fromDate} - ${res.toDate})`;
+
+                            $('.countOrderToday').text(`${countOrderToday} đơn`);
+                            $('.productBuyToday').text(`${productBuyToday} sản phẩm`);
+                            $('.maxProductByCategory').text(maxProductByCategory ? `${maxProductByCategory.categoryMax} (${maxProductByCategory.value})` : 'Không có');
+                            $('.maxByRevenueCategory').text(maxByRevenueCategory ? `${maxByRevenueCategory.categoryMax} (${convertPrice(maxByRevenueCategory.value)})`: 'Không có');
+                            $('.revenueToday').text(convertPrice(revenueToday));
+                            $('.profitToday').text(convertPrice(profitToday));
+                            $('.title-table').text(titleTable);
+
+                            $('.option-custome').attr('selected',true);
+
+                            // Update data table
+                            let ordersToday = res.ordersToday;
+                            let objOrderBuy = {};
+                            let objProductBuy = {};
+                            let objRevenue = {};
+                            let objProfit = {};
+                            // logic
+                            if(ordersToday){
+                                    ordersToday.forEach(function(v) {
+                                        objOrderBuy[convertDate(v.deliveredAt)] = (objOrderBuy[convertDate(v.deliveredAt)] || 0) + 1;
+                                        for(let obj of v.sanphammua){
+                                            objProductBuy[convertDate(v.deliveredAt)] = ( objProductBuy[convertDate(v.deliveredAt)] || 0) + obj.soluongdatmua;
+                                        }
+                                        objRevenue[convertDate(v.deliveredAt)] =  (objRevenue[convertDate(v.deliveredAt)] || 0) + v.tongtien;
+                                        objProfit[convertDate(v.deliveredAt)] =  (objProfit[convertDate(v.deliveredAt)] || 0) + Math.round(v.tongtien * 13/100);       
+                                    });
+                                    // make data
+                                    let dataProductAndOrder = [];
+                                    for (const property in objOrderBuy) {
+                                        let obj = {date: property,order: objOrderBuy[property],product: objProductBuy[property]};
+                                        dataProductAndOrder.push(obj);
+                                    }
+                                    let dataRevenueAndProfit = [];
+                                    for (const property in objRevenue) {
+                                        let obj = {date: property,revenue: objRevenue[property],profit: objProfit[property]};
+                                        dataRevenueAndProfit.push(obj);
+                                    }
+                                morisLine.setData(dataProductAndOrder);
+                                $('.titleModel1').text(titleModel1);
+                                
+                                morisArea.setData(dataRevenueAndProfit);
+                                $('.titleModel2').text(titleModel2);
+                            }
+
+                    
+                },
+                error: function(res){
+                    console.log('Error');
+                }
+            });  
+        });
+    });
+</script>
+
+{{!-- Chart Line Moris --}}
+<script>
+    let convertDate = function(date){
+            date = new Date(date);
+           return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear()
+    };
+    let dataOrders10Day = {{{json orders10Day}}};
+    
+    let objOrderBuy = {};
+    let objProductBuy = {};
+    let objRevenue = {};
+    let objProfit = {};
+    // logic
+     dataOrders10Day.forEach(function(v) {
+        objOrderBuy[convertDate(v.deliveredAt)] = (objOrderBuy[convertDate(v.deliveredAt)] || 0) + 1;
+        for(let obj of v.sanphammua){
+            objProductBuy[convertDate(v.deliveredAt)] = ( objProductBuy[convertDate(v.deliveredAt)] || 0) + obj.soluongdatmua;
+        }
+        objRevenue[convertDate(v.deliveredAt)] =  (objRevenue[convertDate(v.deliveredAt)] || 0) + v.tongtien;
+        objProfit[convertDate(v.deliveredAt)] =  (objProfit[convertDate(v.deliveredAt)] || 0) + Math.round(v.tongtien * 13/100);       
+    });
+    // make data
+    let dataProductAndOrder = [];
+    for (const property in objOrderBuy) {
+        let obj = {date: property,order: objOrderBuy[property],product: objProductBuy[property]};
+        dataProductAndOrder.push(obj);
+    }
+    let dataRevenueAndProfit = [];
+    for (const property in objRevenue) {
+        let obj = {date: property,revenue: objRevenue[property],profit: objProfit[property]};
+        dataRevenueAndProfit.push(obj);
+    }
+   
+        
+        config = {
+        data: dataRevenueAndProfit,
+        xkey: 'date',
+        ykeys: ['revenue', 'profit'],
+        labels: ['doanh thu', 'lợi nhuận'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','red'],
+        parseTime: false
+    };
+
+    config1 = {
+        data: dataProductAndOrder,
+        xkey: 'date',
+        ykeys: ['order', 'product'],
+        labels: ['Đơn hàng', 'Sản phẩm'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','red'],
+        parseTime: false
+    };
+
+config1.element = 'myLineChart1';
+var morisLine = Morris.Line(config1);
+
+config.element = 'myAreaChart2';
+var morisArea = Morris.Area(config);
+
+
+
+
+
+</script>

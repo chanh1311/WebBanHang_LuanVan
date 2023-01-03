@@ -1,0 +1,141 @@
+   
+   <header id="header">
+        {{!-- <img src="/images/background-1.png" alt=""> --}}
+    </header>
+
+    <nav id="header-nav">
+        <div class="container">
+            <ul class="menu-nav">
+                <li><a href="/"><img src="/images/logo/logo.png" alt=""></a></li>
+                <li class="header-search">       
+                    <form method="GET" action="/product/search">
+                        <button class="microphone" type="button">
+                            <i class="fa-solid fa-microphone"></i>
+                            <span class="recording-icon"></span>
+                        </button>
+                        <input type="text" class="input" name="key" placeholder="Bạn cần tìm gì?">
+                        <button id="icon-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        
+                    </form>
+                </li>
+                <li class="btn-hover"><a href="/cart/show"><i class="fa-solid fa-cart-shopping"></i><br>Giỏ hàng</a></li>
+                <li class="btn-hover"><a href="/user/history-order"><i class="fa-solid fa-clock-rotate-left"></i><br>Lịch sử đơn hàng</a></li>
+                
+                <li class="dropdown">
+                
+                    {{#if user}}
+                    <button class="dropbtn acount-custom"><i class="fa-solid fa-user"></i><br>
+                        <span>{{user.fullname}}</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/user/profile">Thông tin cá nhân</a>
+                        <a href="/user/code">Mã khuyến mãi</a>
+                        <a href="/user/change-password">Đổi mật khẩu</a>
+                        <a href="/user/logout">Thoát tài khoản</a>
+                    </div>
+                    {{else}}
+                        <button class="dropbtn"><i class="fa-solid fa-user"></i><br>
+                            Tài khoản
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/user/login">Đăng nhập</a>
+                            <a href="/user/register">Tạo tài khoản</a>
+                        </div>
+                    {{/if}}
+                   
+                </li>
+                <li><i class="fa-solid fa-phone icon-gold"></i><h5>Hotline tư vấn<br>0999999999</h5></li> 
+            </ul>
+            <ul class="menu-nav-tablet">
+                <li><a href=""><img src="/images/logo/logo.png" alt=""></a></li>
+                <li class="header-search">
+                    <form method="GET">
+                        <input type="text" class="input" name="key" placeholder="Bạn cần tìm gì?">
+                        <button id="icon-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </li>
+                <li class="nav__bars-btn">
+                    <label for="nav-tablet-input"><i class="fa-solid fa-bars"></i></label>
+                </li>
+                
+                <input type="checkbox" name="" id="nav-tablet-input" hidden>
+                <div class="menu-nav-tablet-items">
+                    <label class="menu-nav-tablet-items__close" for="nav-tablet-input">
+                        <i class="fa-solid fa-xmark"></i>
+                    </label>
+                    <ul class="menu-nav-tablet-items__list">
+                        <li><a href="">Đăng nhập</a></li>
+                        <li><a href="">Đăng kí</a></li>
+                        <li><a href="">Giỏ hàng</a></li>
+                        <li><a href="">Lịch sử đơn hàng</a></li>
+                        <li><a href="">Đăng xuất</a></li>
+                        <li><a href="">Tất cả điện thoại</a></li>
+                        <li><a href="">Apple</a></li>
+                        <li><a href="">Samsung</a></li>
+                        <li><a href="">Oppo</a></li>
+                        <li><a href="">Xiaomi</a></li>
+                        <li><a href="">Huawai</a></li>
+                    </ul>
+                </div>
+                <label class="nav-overlay" for="nav-tablet-input"></label>
+            </ul>
+
+           
+        </div>   
+    </nav>
+
+
+    <section class="menu-bar">
+        <div class="container">
+            <div class="menu-bar-content">
+                <ul> 
+                    <li><a href="/category?_sort=banchaynhat" class="brand-name" ><i class="fa-solid fa-mobile right-4"></i>Điện thoại</a></li>
+                    <li><a href="/category/apple?_sort=banchaynhat" class="brand-name" ><i class="fa-brands fa-apple right-4"></i><i class="fa-solid fa-a"></i>pple</a></li>
+                    <li><a href="/category/samsung?_sort=banchaynhat" class="brand-name" ><i class="fa-solid fa-s"></i>amSung</a></li>
+                    <li><a href="/category/oppo?_sort=banchaynhat" class="brand-name"><i class="fa-solid fa-o"></i>ppo</a></li>
+                    <li><a href="/category/xiaomi?_sort=banchaynhat" class="brand-name" ><i class="fa-solid fa-x"></i>iaomi</a></li>
+                    <li><a href="/category/huawai?_sort=banchaynhat" class="brand-name" ><i class="fa-solid fa-h"></i>uawai</a></li>
+                </ul>
+            </div>
+        </div>
+    </section >
+
+<script>
+    function handleVoice(text){
+        const handledText = text.toLowerCase();
+        window.location.href = `/product/search?key=${handledText}`
+    }
+
+
+    var SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    // config 
+    recognition.lang = 'vi-VI';
+    recognition.continuous = false;
+    
+    const microphone = document.querySelector('.microphone');
+
+    microphone.addEventListener('click',function(e){
+        e.preventDefault();
+        recognition.start();
+         microphone.classList.add('recording');
+    });
+
+    recognition.onspeechend = () => {
+        recognition.stop();
+        microphone.classList.remove('recording');
+    }
+
+    recognition.onerror = (err) => {
+        console.error(err);
+        microphone.classList.remove('recording');
+    }
+
+    recognition.onresult = (e) => {
+        console.log('onresult', e);
+        const text = e.results[0][0].transcript;
+        handleVoice(text);
+        
+    }
+
+</script>

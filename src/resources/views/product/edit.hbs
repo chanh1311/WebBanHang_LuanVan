@@ -1,0 +1,25 @@
+<div class="container mt-3">
+  <h1>Cập nhật sản phẩm</h1>
+  <form method="POST" action="/product/{{product._id}}?_method=PUT">
+    <div class="mb-3 mt-3 form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" value="{{product.name}}" id="name" name="name">
+    </div>
+    <div class="mb-3 mt-3 form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" name="description">
+          {{product.description}}
+      </textarea>
+    </div>
+    <div class="mb-3 mt-3 form-group">
+      <label for="price">Price:</label>
+      <input type="text" class="form-control" id="price" name="price" value="{{product.price}}">
+    </div>
+    <div class="mb-3 mt-3 form-group">
+      <label for="image">Image</label>
+      <input type="text" class="form-control" id="image" name="image" value="{{product.image}}">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
+  </form>
+</div>

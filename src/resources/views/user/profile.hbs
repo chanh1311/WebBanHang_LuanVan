@@ -1,0 +1,98 @@
+    <section>
+        <div class="container">
+            <div class="order-history">
+                <ul class="order-history-left">
+                    <li><a href="/user/history-order"><i class="fa-solid fa-list"></i> Danh sách đơn hàng đã mua</a></li>
+                    <li class="active"><a href=""><i class="fa-solid fa-address-card"></i> Thông tin cá nhân và sổ địa chỉ</a></li>
+                    <li><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi của bạn</a></li>
+                </ul>
+                <div class="order-history-right">
+                    <div class="order-history-right-top">
+                        <p>Chào anh <span>{{user.fullname}}</span></p>
+                        <ul>
+                            <li><a href="/user/code"><i class="fa-solid fa-tags"></i> Mã khuyến mãi</a></li>
+                            <li style="color: rgb(13,110,253);">|</li>
+                            <li><a href="/user/logout">Thoát tài khoản</a></li>
+                        </ul>
+                    </div>
+                    <form action="/user/profile/edit" method="post">
+                        <div class="order-history-right-bottom">
+                        <h4>Thông tin cá nhân</h4>
+                        <div class="order-history-right-bottom-info">
+                            <div class="form-group">
+                                <label for="fullname">Họ và tên</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="" value="{{infoUser.fullname}}" name="fullname">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="num-phone">Số điện thoại</label>
+                                <input type="text" class="form-control" id="num-phone" placeholder="" value="{{infoUser.phone}}" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="num-phone">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="" value="{{infoUser.email}}" name="email">
+                            </div>     
+                        </div>
+                        <div class="order-history-right-bottom-address">
+                            <h4>Địa chỉ nhận hàng</h4>
+                            <ul class="ul-address">
+                                <hr>
+                                 {{#with infoUser}}
+                                 {{#each address}}
+                                <li>
+                                    <label for="">{{this}}</label><br>
+                                    <div class="order-history-right-bottom-address-btn">
+                                       
+                                        <button class="editAddress"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                                        <button class="deleteAddress" value="{{@index}}" type="button"><i class="fa-solid fa-calendar-xmark"></i> Xóa</button>
+                                        
+                                    </div>
+                                    <div class="mt-2 editAddressHidden" id="editAddressHidden" hidden>
+                                        <label for="address">Sửa địa chỉ</label>
+                                        <input type="text" class="form-control" id="address" placeholder="" value="{{this}}" name="address[]">
+                                    </div>
+                                    {{!--  --}}
+                                    
+                                </li>
+                                <hr>
+                                {{/each}}
+                                {{/with}}
+                            </ul>
+                            <button class="addAddress"><i class="fa-solid fa-circle-plus"></i> Thêm địa chỉ nhận hàng</button>
+                            <div class="mt-2 addAddressHidden" hidden>
+                                <label for="address">Thêm địa chỉ</label>
+                                <input type="text" class="form-control" id="address" placeholder="" name="newaddress">
+                            </div>
+                        </div>
+                        
+                        <div class="order-history-right-bottom-button">
+                            <button type="submit" class="btn btn-primary">CẬP NHẬT</button>
+                        </div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <form action="" method="post" class="form-delete-address"></form>
+        </div>
+    </section>
+
+
+<script>
+    // get form 
+    let formDeleteAddress = $('.form-delete-address');
+    console.log(formDeleteAddress);
+    let btnDeleteAddress = $('.deleteAddress');
+    console.log(btnDeleteAddress);
+    //
+    $('.ul-address').on('click','.deleteAddress',function(e){
+        e.preventDefault();
+        console.log('Hello');
+        let value = $(this).val();
+        let url = `/user/profile/delete/${value}?_method=delete`;
+        console.log(url);
+        formDeleteAddress.attr('action',url);
+        formDeleteAddress.submit();
+    });
+    
+</script>

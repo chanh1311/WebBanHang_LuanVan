@@ -1,0 +1,46 @@
+    {{#if message}}
+        <div class="alert alert-success text-center" role="alert">
+            {{message}}
+        </div>
+    {{/if}}
+    <form action="/checkout/change-address/{{order._id}}" method="POST" class="mt-3" id="form-change-address">
+        <div class="container addCategory bg-gradient">
+            <div class="mt-4 text-center"><h2 class="text-dark">THÔNG TIN ĐẶT HÀNG</h2></div>
+            <div class="row justify-content-md-center mt-3">
+                <div class="col-xl-3 form-group">
+                    <label for="phone" class="text-dark">Số điện thoại khách hàng</label>
+                    <input type="text" class="form-control form-control-custome" id="phone" aria-describedby="phone" name="phone" value="{{order.phone}}">
+                    <span class="form-message color-red"></span>
+                </div>
+                
+                <div class="col-xl-3 form-group">
+                    <label for="diachi" class="text-dark">Địa chỉ nhận hàng</label>
+                    <input type="text" class="form-control form-control-custome" id="diachi" aria-describedby="diachi" name="diachi" value="{{order.diachi}}">
+                    <span class="form-message color-red"></span>
+                </div>
+
+                </div>
+            <div class="text-center mt-3 mb-3"><button class="btn btn-primary">Thay đổi thông tin</button></div>
+           
+        </div>
+    </form>
+
+{{!-- Validation --}}
+ <script src="/js/validator.js"></script>
+ <script>
+    // validation
+             Validator({
+                form: '#form-change-address',
+                formGroup: '.form-group',
+                errorSelector: '.form-message',
+                
+                rules: [
+                
+                
+                    Validator.isRequired('#phone'),
+                    Validator.isRequired('#diachi'),
+                   
+                ],
+                
+             });
+ </script>

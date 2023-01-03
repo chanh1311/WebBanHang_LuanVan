@@ -1,0 +1,507 @@
+<div class="container-fluid px-4">
+            <div class="text-center"><h1 class="mt-4">Trang chủ trang quản lý</h1></div>
+            {{#if message}}
+                <div class="alert alert-danger text-center" role="alert">
+                    {{message}}
+                </div>
+            {{/if}}
+            <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Doanh thu tuần này</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{convertPrice total}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Đơn đã bán tuần này</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{countToDay}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            {{!-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> --}}
+                                            
+                                            <i class="fa-solid fa-square-check fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Đơn hàng đang giao
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{deliveryOrder}}</div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                            <i class="fa-solid fa-truck fa-2x text-gray-300"></i>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Đơn hàng mới </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{newOrder}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                            <i class="fa-solid fa-file-circle-plus fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!--  --}}
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body">Danh sách sản phẩm</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/admin/show-product">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body">Danh sách người dùng</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/admin/list-user">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success text-white mb-4">
+                                <div class="card-body">Danh sách đơn hàng</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/admin/list-order">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">Thống kê báo cáo</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="/admin/statistical">Xem chi tiết</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Sơ đồ biểu diễn doanh thu 7 ngày qua</h6>
+                                    {{!-- <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div> --}}
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        
+                                        <div id="myfirstchart" style="height: 250px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Loại sản phẩm</h6>
+                                    {{!-- <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div> --}}
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        {{!-- <canvas id="myPieChart"></canvas> --}}
+                                        <div id="donut-example" class="morris-donut-inverse" style="height: 250px;"></div>
+                                    </div>
+                                    {{!-- <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Direct
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Social
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Referral
+                                        </span>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Doanh thu theo thương hiệu</h6>
+                                </div>
+                                {{#with (percent objTotalByCategory)}}
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold d-flex justify-content-between">Apple<span
+                                            class="float-right">{{#if this.apple}} {{this.apple}}{{else}} 0{{/if}}%</span></h4>
+                                    <div class="progress mb-4 progress-apple">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{this.apple}}%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold d-flex justify-content-between">Sam Sung <span
+                                            class="float-right">{{#if this.samsung}} {{this.samsung}}{{else}} 0{{/if}}%</span></h4>
+                                    <div class="progress mb-4 progress-samsung">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{this.samsung}}%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold d-flex justify-content-between">Xiaomi<span
+                                            class="float-right">{{#if this.xiaomi}} {{this.xiaomi}}{{else}} 0{{/if}}%</span></h4>
+                                    <div class="progress mb-4 progress-xiaomi">
+                                        <div class="progress-bar" role="progressbar" style="width: {{this.xiaomi}}%"
+                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold d-flex justify-content-between">Oppo<span
+                                            class="float-right"></span>{{#if this.oppo}} {{this.oppo}}{{else}} 0{{/if}}%</h4>
+                                    <div class="progress mb-4 progress-oppo">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{this.oppo}}%"
+                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold d-flex justify-content-between">Huawai <span
+                                            class="float-right">{{#if this.huawai}} {{this.huawai}}{{else}} 0{{/if}}%</span></h4>
+                                    <div class="progress progress-huawai">
+                                        <div class="progress-bar bg-success " role="progressbar" style="width: {{this.huawai}}%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                {{/with}}
+                            </div>
+
+                            <!-- Color System -->
+                            {{!-- <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-primary text-white shadow">
+                                        <div class="card-body">
+                                            Primary
+                                            <div class="text-white-50 small">#4e73df</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            Success
+                                            <div class="text-white-50 small">#1cc88a</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-info text-white shadow">
+                                        <div class="card-body">
+                                            Info
+                                            <div class="text-white-50 small">#36b9cc</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-warning text-white shadow">
+                                        <div class="card-body">
+                                            Warning
+                                            <div class="text-white-50 small">#f6c23e</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-danger text-white shadow">
+                                        <div class="card-body">
+                                            Danger
+                                            <div class="text-white-50 small">#e74a3b</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-secondary text-white shadow">
+                                        <div class="card-body">
+                                            Secondary
+                                            <div class="text-white-50 small">#858796</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-light text-black shadow">
+                                        <div class="card-body">
+                                            Light
+                                            <div class="text-black-50 small">#f8f9fc</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-dark text-white shadow">
+                                        <div class="card-body">
+                                            Dark
+                                            <div class="text-white-50 small">#5a5c69</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Giao diện</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                            src="/images/admin/undraw_dashboard_re_3b76.svg" alt="...">
+                                    </div>
+                                    <p>Đây là giao diện quản lý </p>
+                                    <a href="/" style="text-decoration: none;">Đi đến trang mua hàng</a>
+                                </div>
+                            </div>
+
+                            {{!-- <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                        CSS bloat and poor page performance. Custom CSS classes are used to create
+                                        custom components and custom utility classes.</p>
+                                    <p class="mb-0">Before working with this theme, you should become familiar with the
+                                        Bootstrap framework, especially the utility classes.</p>
+                                </div>
+                            </div> --}}
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+        <div class="table-product-bestselling">
+            <div class="text-center mt-3"><h2>Top 10 sản phẩm bán chạy nhất</h2></div>
+      
+            <table id="dataProduct" class="table" style="width:100%">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Giá tiền</th>
+                        <th scope="col">Ngày thêm sản phẩm</th>
+                        <th scope="col">Số lượng còn</th>
+                        <th scope="col">Số lượng đã bán</th>
+                        <th scope="col"> Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each topProduct}}
+                    <tr>
+                        <td>
+                            <b>#{{sliceId this._id}}</b><br>
+                            <a href="/admin/product-detail/{{this._id}}" class="btn btn-sm btn-info">Xem chi tiết</a>
+                        </td>
+                        <td>{{this.tensanpham}}</td>
+                        <td><div class="image-productInOrders"><img src="/images/products/{{this.hinhanh}}" alt="Hình ảnh sản phẩm"></div></td>
+                        <td>{{convertPrice this.gia}}</td>
+                        
+                        <td>{{convertDate this.createdAt}}</td>
+                        <td>{{this.soluong}}</td>
+                        <td>{{#if this.soluongmua}}{{this.soluongmua}}{{else}}0{{/if}}</td>
+                        <td>
+                            <button class="updateProductAdmin btn btn-primary btn-sm" value="{{this._id}}"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                            <button class="deleteProductAdmin btn btn-danger btn-sm mt-2" value="{{this._id}}"><i class="fa-solid fa-calendar-xmark"></i> Xóa</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                    <tfoot class="table-dark">
+                        <tr>
+                            <th scope="col">Mã sản phẩm</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Giá tiền</th>
+                            <th scope="col">Ngày thêm sản phẩm</th>
+                            <th scope="col">Số lượng còn lại</th>
+                            <th scope="col">Số lượng đã bán được</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
+                    </tfoot>
+            </table>
+
+                                
+            <form action="" class="form-hidden-product-admin" method="POST" hidden>
+                
+            </form>                    
+        </div>
+</div>
+<script>
+    // hieu hon ve [Obj Obj]
+   let test = {{{json objCountByCategory}}};
+   let data = [];
+   
+    for (const property in test) {
+        let obj = {label: property,value: test[property]};
+        data.push(obj);
+    }
+    
+    var colorDanger = "#FF1744";
+    Morris.Donut({
+    element: 'donut-example',
+    resize: true,
+    colors: [
+        '#E0F7FA',
+        '#B2EBF2',
+        '#80DEEA',
+        '#4DD0E1',
+        '#26C6DA',
+        '#00BCD4',
+        '#00ACC1',
+        '#0097A7',
+        '#00838F',
+        '#006064'
+    ],
+    //labelColor:"#cccccc", // text color
+    //backgroundColor: '#333333', // border color
+     data: data
+    });
+
+
+</script>
+<script>
+        let totalOrderDay = {{{json objTotalWeek}}};
+        data = [];
+   
+        for (const property in totalOrderDay) {
+            let obj = {day: property,value: totalOrderDay[property]};
+            data.push(obj);
+        }
+        
+        new Morris.Line({
+        // ID of the element in which to draw the chart.
+        element: 'myfirstchart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: data,
+        parseTime: false,
+       
+        // The name of the data record attribute that contains x-values.
+        xkey: 'day',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['value'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Doanh thu']
+    });
+</script>
+
+ 

@@ -1,0 +1,273 @@
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6370cfd8daff0e1306d72757/1ghoanqn5';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+ 
+    <!-- Slider -->
+    <section class="silder">
+        <div class="container">
+            <div class="slider-content">
+                <div class="slider-content-left">
+                    <div class="slider-content-left-top-container">
+                        <div class="slider-content-left-top">
+                            {{#each (limit slider 5)}}
+                                <a href=""><img src="{{this.hinhanh}}" alt=""></a>
+                            {{/each}}
+                        </div>
+                        <div class="slider-content-left-top-btn" >
+                            <i class="fa-solid fa-chevron-left"></i>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-content-left-bottom">
+                        {{#each (limit slider 5)}}
+                            <li class="{{#if @first}}active{{/if}}">{{this.tieude}}</li>
+                        {{/each}} 
+                    </div>
+                </div>
+                <div class="slider-content-right">               
+                     {{#with banner}}
+                        {{#each (limit this.banner_slider_right 4)}}
+                            <li><a href=""><img src="{{this}}" alt=""></a></li>
+                        {{/each}}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-one">
+        <div class="container">
+            <img src="{{banner.banner_bottom}}" alt="">
+        </div>
+    </section>
+    <!-- Slider product -->
+
+    <section class="slider-product-one">
+        <div class="container">
+            <div class="slider-product-one-content">
+                <div class="slider-product-one-content-title">
+                    <h2>KHUYẾN MÃI HOT</h2>
+                </div>
+                <div class="slider-product-one-content-container">
+                    <div class="slider-product-one-content-items-content">
+                        
+                        <div class="slider-product-one-content-items"> 
+                            {{#each (slice productSale 0 5)}}
+                                <div class="slider-product-one-content-item">
+                                    <img src="/images/products/{{this.hinhanh}}" alt="">
+                                    <a href="/product/{{this.slug}}">
+                                        <div class="slider-product-one-content-item-text">
+                                            <li><img src="./images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                            <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                            <li><span>Online giá rẻ</span></li>
+                                            <li><span class="price-old">{{convertPrice this.giagoc}}</span><span> - {{convertGiam this.giam}}%</span></li>
+                                            <li><span class="price-new">{{convertPrice this.gia}} </span></li>
+                                            <li><span>Quà {{convertPrice this.giaqua}} </span></li>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                        </div>
+                                    </a>
+                                    
+                                </div>
+                             {{/each}}                      
+                        </div>
+                        
+                         
+                        <div class="slider-product-one-content-items">
+                           {{#each (slice productSale 5 10)}} 
+                           
+                                <div class="slider-product-one-content-item">
+                                    <img src="/images/products/{{this.hinhanh}}" alt="">
+                                    <a href="/product/{{this.slug}}">
+                                        <div class="slider-product-one-content-item-text">
+                                            <li><img src="./images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                            <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                            <li><span>Online giá rẻ</span></li>
+                                            <li><span class="price-old">{{convertPrice this.giagoc}}</span><span> -{{convertGiam this.giam}}%</span></li>
+                                            <li><span class="price-new">{{convertPrice this.gia}} </span></li>
+                                            <li><span>Quà {{convertPrice this.giaqua}} </span></li>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                        </div>
+                                    </a>
+                                
+                                </div>
+                            
+                            {{/each}}                       
+                        </div>
+
+                        <div class="slider-product-one-content-items">
+                           {{#each (slice productSale 10 15)}} 
+                           
+                            <div class="slider-product-one-content-item">
+                                <img src="/images/products/{{this.hinhanh}}" alt="">
+                                <a href="/product/{{this.slug}}">
+                                    <div class="slider-product-one-content-item-text">
+                                        <li><img src="/images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                        <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                        <li><span>Online giá rẻ</span></li>
+                                        <li><span class="price-old">{{convertPrice this.giagoc}}</span><span> -{{convertGiam this.giam}}%</span></li>
+                                        <li><span class="price-new">{{convertPrice this.gia}} </span></li>
+                                        <li><span>Quà {{convertPrice this.giaqua}} </span></li>
+                                        <li>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </li>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            {{/each}}                       
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="slider-product-one-content-btn">
+                        <i class="fa-solid fa-chevron-left fa-chevron-left-two"></i>
+                        <i class="fa-solid fa-chevron-right fa-chevron-right-two"></i>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+     <!-- Banner Two -->
+     <section class="banner-two">
+        <div class="container">
+            <div class="banner-two-contain">
+                <div class="banner-two-title">
+                    <h2>ƯU ĐÃI TỪ THƯƠNG HIỆU</h2>
+                </div>
+                <div class="banner-two-content">
+                    {{#with banner}}
+                        {{#each (limit this.banner_category 2)}}
+                            <div class="{{#if @first}}banner-two-left {{else}}banner-two-right {{/if}}">
+                                <img src="{{this}}" alt="">
+                            </div>
+                        {{/each}}
+                    {{/with}}
+                    
+                    
+                </div>
+            </div>    
+        </div>
+    </section>
+
+    <!--Product Gallery  -->
+    <div class="product-gallery-one">
+        <div class="container">
+            <div class="product-gallery-one-content">
+                <div class="product-gallery-one-content-title">
+                    <h2>ĐIỆN THOẠI NỔI BẬT NHẤT</h2>
+                    <ul id="title-menu">
+                        {{#each category}}
+                        <li><a href="/category/{{this.maloaihang}}?_sort=banchaynhat">{{this.tenloaihang}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="product-gallery-one-content-product">
+                    {{#each productsBest}}
+                    
+                        <div class="slider-product-one-content-item">
+                                <img src="/images/products/{{this.hinhanh}}" alt="">
+                                <a href="/product/{{this.slug}}">
+                                    <div class="slider-product-one-content-item-text">
+                                        <li><img src="/images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                        <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                        <li><span>Online giá rẻ</span></li>
+                                        <li><span class="price-old">{{convertPrice this.giagoc}}</span><span> -{{convertGiam this.giam}}%</span></li>
+                                        <li><span class="price-new">{{convertPrice this.gia}} </span></li>
+                                        <li><span>Quà {{convertPrice this.giaqua}} </span></li>
+                                        <li>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </li>
+                                    </div>
+                                </a>       
+                        </div>
+                    
+                    {{/each}}    
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <!-- Product New -->
+    <section class="product-gallery-two">
+        <div class="container">
+            <div class="product-gallery-two-title">
+                <h2>SẢN PHẨM MỚI NHẤT</h2>
+            </div>
+            <div class="product-gallery-two-content">
+                <div class="product-gallery-two-content-top">
+                    {{#each category}}
+                       <li class="{{#if @first}}active{{/if}}"><a href="/category/{{this.maloaihang}}?_sort=banchaynhat">{{this.tenloaihang}}</a></li>
+                    {{/each}}
+                    <li><a href="/category?_sort=banchaynhat">Xem tất cả <i class="fa-solid fa-arrow-right"></i></a></li>
+                </div>
+
+                <div class="product-gallery-two-content-bottom">
+                    {{#each (slice productDate 0 5)}}
+                        <div class="slider-product-one-content-item">
+                                    <img src="/images/products/{{this.hinhanh}}" alt="">
+                                    <a href="/product/{{this.slug}}">
+                                        <div class="slider-product-one-content-item-text">
+                                            <li><img src="/images/icon1.png" alt=""><p>Hàng khuyến mãi</p></li>
+                                            <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                            <li><span>Online giá rẻ</span></li>
+                                            <li><span class="price-old">{{convertPrice this.giagoc}}</span><span> -{{convertGiam this.giam}}%</span></li>
+                                            <li><span class="price-new">{{convertPrice this.gia}} </span></li>
+                                            <li><span>Quà {{convertPrice this.giaqua}} </span></li>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                        </div>
+                                    </a>  
+                        </div>
+
+                    {{/each}}
+                    
+
+                </div>
+            </div>
+        </div>
+  </section>
+<!-- Start of Async Drift Code -->
+
+<!-- End of Async Drift Code -->
+

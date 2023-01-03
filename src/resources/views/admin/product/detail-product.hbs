@@ -1,0 +1,183 @@
+<div class="table-responsive">
+    {{#with product}}
+    <div class="text-center mt-2 bg-gradient"><h2>Mô tả chi tiết {{this.tensanpham}}</h2></div>
+    {{/with}}
+    <table class="table table-detail-product" style="width:100%">
+        <thead>
+            <tr>
+              <th scope="col" style="width:15%"></th>
+              <th scope="col" style="width:85%"></th>
+               
+            </tr>
+          </thead>
+          <tbody>
+          {{#with product}}
+            <tr>
+                <td>ID</td>
+                <td>{{this._id}}</td>
+                
+            </tr>
+            <tr>
+                <td>Tên sản phẩm</td>
+                <td>{{this.tensanpham}}</td>
+            </tr>
+            <tr>
+                <td>Hình ảnh</td>
+                <td><div class="image-productInOrders"><img src="/images/products/{{this.hinhanh}}" alt="Hình ảnh sản phẩm"></td></td>
+      
+            </tr>
+            <tr>
+                <td>Mã loại hàng</td>
+                <td>{{this.maloaihang}}</td>
+      
+            </tr>
+            <tr>
+                <td>Mô tả</td>
+                <td>{{{this.mota}}}</td>
+                
+            </tr>
+            <tr>
+                <td>Giá trước khuyến mãi</td>
+                <td>{{convertPrice this.giagoc}}</td>
+                
+            </tr>
+            <tr>
+                <td>Giá</td>
+                <td>{{convertPrice this.gia}}</td>
+                
+            </tr>
+            <tr>
+                <td>Tỉ lệ đã giảm</td>
+                <td>{{this.giam}}</td>
+            </tr>
+            <tr>
+                <td>Phần quà trị giá</td>
+                <td>{{convertPrice this.giaqua}}</td>
+                
+            </tr>
+            <tr>
+                <td>Phụ kiện kèm theo</td>
+                <td>{{this.phukien}}</td>
+                
+            </tr>
+             <tr>
+                <td>Khuyến mãi</td>
+                <td>{{this.khuyenmai}}</td>
+            </tr>
+            <tr>
+                <td>Số lượng kho</td>
+                <td>{{this.soluong}}</td>
+            </tr>
+            <tr>
+                <td>Số lượng đã bán</td>
+                <td>{{this.soluongmua}}</td>
+            </tr>
+            <tr>
+                <td>Ngày thêm</td>
+                <td>{{convertDate this.createdAt}}</td>
+            </tr>
+              <tr>
+                <td>Ngày Update</td>
+                <td>{{convertDate this.updatedAt}}</td>
+            </tr>
+            
+          {{/with}}
+          
+          </tbody>
+          
+            <tfoot>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                   
+                    
+                </tr>
+            </tfoot>
+    </table>
+
+
+    <table class="table table-detail-product table-dark" style="width:100%">
+      {{#with product}}
+     <div class="text-center"><h2>Cấu hình {{this.tensanpham}}</h2></div>
+      {{/with}}
+        <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+               
+            </tr>
+          </thead>
+          <tbody>
+          {{#with product.cauhinh}}
+            <tr>
+                <td>Màn hình</td>
+                <td>{{this.manhinh}}</td>
+                
+            </tr>
+            <tr>
+                <td>Hệ điều hành</td>
+                <td>{{this.hedieuhanh}}</td>
+            </tr>
+            <tr>
+                <td>Camera trước</td>
+                <td>{{this.cameratruoc}}</td>
+      
+            </tr>
+            <tr>
+                <td>Camera sau</td>
+                <td>{{this.camerasau}}</td>
+      
+            </tr>
+            <tr>
+                <td>CPU</td>
+                <td>{{this.chip}}</td>
+                
+            </tr>
+            <tr>
+                <td>RAM</td>
+                <td>{{this.RAM}}</td>
+                
+            </tr>
+            <tr>
+                <td>Dung lượng</td>
+                <td>{{this.dungluong}}</td>
+                
+            </tr>
+            <tr>
+                <td>Sim</td>
+                <td>{{this.sim}}</td>
+            </tr>
+            <tr>
+                <td>PIN</td>
+                <td>{{this.pin}} mah</td>
+                
+            </tr>
+            <tr>
+                <td>Sạc</td>
+                <td>{{this.sac}}</td>
+                
+            </tr>
+             <tr>
+                <td>Chức năng đặt biệt</td>
+                <td>{{this.special}}</td>
+            </tr>
+            
+            
+          
+            
+          {{/with}}
+          
+          </tbody>
+          
+            <tfoot>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                   
+                    
+                </tr>
+            </tfoot>
+    </table>
+        
+    
+</div>

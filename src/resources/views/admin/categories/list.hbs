@@ -1,0 +1,82 @@
+<div>
+      <div class="text-center mt-4"><h2>THƯƠNG HIỆU SẢN PHẨM</h2></div>
+       {{#if message}}
+            <div class="alert alert-success mt-2 text-center" role="alert">
+                {{message}}
+            </div>
+        {{/if}}
+      <table id="dataCategory" class="table table-light mt-4" style="width:100%">
+          <thead class="table-dark">
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã Thương Hiệu</th>
+                <th scope="col">Tên Thương Hiệu</th>
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+                {{#each categories}}
+                    <tr>
+                        <td>{{sum @index 1}}</td>
+                        <td>{{this.maloaihang}}</td>
+                        <td>{{this.tenloaihang}}</td>
+                        {{!-- <td><button class="btn btn-danger" value="{{this._id}}">Xóa</button></td> --}}
+                    </tr>
+                {{/each}}
+            </tbody>
+              {{!-- <tfoot class="table-dark">
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã Thương Hiệu</th>
+                    <th scope="col">Tên Thương Hiệu</th>
+                    
+                </tr>
+              </tfoot> --}}
+      </table>
+
+    <form action="/admin/add-category" method="POST" class="mt-3" id="form-add-category">
+        <div class="container addCategory bg-light bg-gradient">
+            <div class="mt-4 text-center"><h2 class="text-primary">THÊM THƯƠNG HIỆU</h2></div>
+            <div class="row justify-content-md-center mt-3">
+                <div class="col-xl-3 form-group">
+                    <label for="maloaihang" class="text-dark">Mã thương hiệu</label>
+                    <input type="text" class="form-control form-control-custome" id="maloaihang" aria-describedby="maloaihang" name="maloaihang">
+                    <span class="form-message"></span>
+                </div>
+                
+                <div class="col-xl-3 form-group">
+                    <label for="tenloaihang" class="text-dark">Tên thương hiệu</label>
+                    <input type="text" class="form-control form-control-custome" id="tenloaihang" aria-describedby="tenloaihang" name="tenloaihang">
+                    <span class="form-message"></span>
+                </div>
+
+                </div>
+            <div class="text-center mt-3 mb-3"><button class="btn btn-primary">Thêm thương hiệu</button></div>
+           
+        </div>
+    </form>
+    
+         
+</div>
+
+
+{{!-- Validation --}}
+ <script src="/js/validator.js"></script>
+ <script>
+    // validation
+             Validator({
+                form: '#form-add-category',
+                formGroup: '.form-group',
+                errorSelector: '.form-message',
+                
+                rules: [
+                
+                
+                    Validator.isRequired('#tenloaihang'),
+                    Validator.isRequired('#maloaihang'),
+                   
+                ],
+                
+             });
+ </script>

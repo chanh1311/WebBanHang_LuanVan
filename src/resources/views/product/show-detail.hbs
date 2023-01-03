@@ -1,0 +1,427 @@
+
+<div id="toast">
+</div>
+<section class="detail-product" id="detail-product">
+  
+        <div class="container">
+            <div class="detail-product-contain-title">
+                <h2>{{product.tensanpham}}</h2>
+                <hr>
+            </div>
+            <div class="detail-product-contain">
+                <section class="detail-product-contain-content">
+                    <div class="detail-product-contain-content-left">
+                        <div class="detail-product-contain-content-left-top">
+                            <div class="detail-product-contain-content-left-slider">
+                                {{#each product.slider}}
+                                <a href="#"><img src="/images/products/{{this}}" alt=""></a>
+                            
+                                {{/each}}
+                            </div>
+    
+                            <div class="detail-product-contain-content-left-slider-btn">
+                                <i class="fa-solid fa-chevron-left fa-solid fa-chevron-left-three"></i>
+                                <i class="fa-solid fa-chevron-right fa-solid fa-chevron-right-three"></i>
+                            </div>
+                        </div>
+
+                        {{!-- <div class="detail-product-contain-content-left-title">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </div> --}}
+
+
+                        <div class="detail-product-contain-content-left-discount">
+                            <ul class="detail-product-contain-content-left-discount-ul">
+                            
+                                <li><i class="fa-solid fa-shield"></i>Bảo hành chính hãng điện thoại {{product.thoihanbaohanh}} năm <br> tại các trung tâm bảo hành hãng</li>
+                                <li><i class="fa-solid fa-box"></i>Bộ sản phẩm gồm: {{product.phukien}}</li>
+                            </ul>
+                        </div>
+                        <div class="detail-product-contain-content-left-description">
+                            <div class="detail-product-contain-content-left-description-title">
+                                <h2>Mô tả sản phẩm</h2>
+                            </div>
+                            <div class="detail-product-contain-content-left-description-content">
+                               {{{product.mota}}}
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="detail-product-contain-content-right">
+                        <div class="detail-product-contain-content-right-price"><span style="font-size: 25px;font-weight: bold;">Giá:</span><span class="price-product"> {{convertPrice product.gia}}</span><span class="price-giam"> (-{{convertGiam product.giam}}%)</span><br><span class="price-product price-old">{{convertPrice product.giagoc}}</span></div>
+                        <div class="detail-product-contain-content-right-discount">
+                           <div class="detail-product-contain-content-right-discount-title">
+                                <h4>Khuyến mãi</h4>
+                           </div>
+                            <ul>
+                                <li><i class="fa-solid fa-circle-check"></i>{{product.khuyenmai}}({{convertPrice product.giaqua}})</li>
+                                {{!-- <li><i class="fa-solid fa-circle-check"></i>Nhập mã MWG18 giảm 3% tối đa 100.000đ khi thanh toán quét QRcode qua App của ngân hàng (click xem chi tiết)</li>
+                                <li><i class="fa-solid fa-circle-check"></i>Nhập mã MWG18 giảm 3% tối đa 100.000đ khi thanh toán quét QRcode qua App của ngân hàng (click xem chi tiết)</li> --}}
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-product-contain-content-right-payment">
+                            <!-- <h2>Ưu đãi khi thanh toán</h2> -->
+                            <form action="">
+                                {{!-- <label for="diaChi">Nhập địa chỉ nhận hàng</label><br>
+                                <input class="btn-full" id="diaChi" name="diaChi">
+                                <br>
+                                <select name="" id="">
+                                    <option value="0">Chọn phương thức thanh toán</option>
+                                    <option value="1">Thanh toán khi nhận hàng</option>
+                                    <option value="2">Thanh toán Online</option>
+                                </select> --}}
+                                <a href="/cart/buy/{{product._id}}"><button type="button" class="btn-full">MUA NGAY</button></a>
+                                <p>Gọi đặt mua 1900.0000 (7:30 - 22:00)</p>
+                                
+                                {{!-- <a href="/cart/addtocart/{{product._id}}"></a> --}}
+                                <button value="{{product._id}}" type="button" class="btn-full btn btn-primary btn-add-product-to-cart" id="btn-primary">THÊM SẢN PHẨM VÀO GIỎ</button>
+                                <p>Thêm sản phẩm vào giỏ để đặt mua sau</p>
+                                  {{#if message}}
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        {{message}}
+                                    </div>
+                                    {{/if}}
+                            </form>
+                        </div>
+                        <div class="text-center"><p class="detail-soluong">Còn lại {{product.soluong}} sản phẩm</p></div>
+
+                        <div class="detail-product-contain-content-right-gift">
+                            <li><i class="fa-solid fa-gift"></i> Giảm ngay 1.000.000đ khi thanh toán online</li>
+                        </div>
+                        <div class="detail-product-contain-content-right-config">
+                            <div class="detail-product-contain-content-right-config-title">
+                                <h4>Cấu hình {{product.tensanpham}}</h4>
+                            </div>
+                            <div class="detail-product-contain-content-right-config-table">
+                                <table class="table table-striped">
+                                    <thead>
+                                      
+                                    </thead>
+                                    {{#with product.cauhinh}}
+                                    <tbody>
+                                      <tr>
+                                        <td>Màn hình điện thoại: </td>
+                                        <td>{{this.manhinh}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Hệ điều hành:</td>
+                                        <td>{{this.hedieuhanh}}</td>
+                                       
+                                      </tr>
+                                      <tr>
+                                        <td>Camera sau:</td>
+                                        <td>{{this.camerasau}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>Camera trước:</td>
+                                        <td>{{this.cameratruoc}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>Chip:</td>
+                                        <td>{{this.chip}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>RAM:</td>
+                                        <td>{{this.RAM}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>Bộ nhớ trong:</td>
+                                        <td>{{this.dungluong}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>SIM:</td>
+                                        <td>{{this.sim}}</td>
+                                        
+                                      </tr>
+                                      <tr>
+                                        <td>Pin, Sạc:</td>
+                                        <td>{{this.pin}} {{this.sac}}</td>
+                                        
+                                      </tr>
+                                      
+                                    </tbody>
+                                    {{/with}}
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-product-contain-content-left-product_evaluate" id="review">
+                            <div class="detail-product-contain-content-left-product_evaluate-title">
+                                <h4>Đánh giá & Nhận xét {{this.tensanpham}}</h4>
+                                <div class="detail-product-contain-content-left-product_evaluate-title-colunmn">
+                                    {{#with (functionRates rate)}}
+                                    <div class="product_evaluate-title-colunmn-point">
+                                        <h6>Đánh giá trung bình</h6>
+                                        <p class="point">{{this.avg}}/5</p>
+                                        <li>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </li>
+                                        <p>{{this.len}} đánh giá và nhận xét</p>
+                                    
+                                    </div>
+                                    
+                                  
+                                    <div class="">
+                                        <div class="side">
+                                            <div>5 sao</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                            <div class="bar-5" style="width:{{this.perReview5}}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="number-start">{{this.count5}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>4 sao</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                            <div class="bar-4" style="width:{{this.perReview4}}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="number-start">{{this.count4}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>3 sao</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                            <div class="bar-3" style="width:{{this.perReview3}}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="number-start">{{this.count3}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div>2 sao</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                            <div class="bar-2" style="width:{{this.perReview2}}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="number-start">{{this.count2}}</div>
+                                        </div>
+                                        <div class="side">
+                                            <div >1 sao</div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="bar-container">
+                                            <div class="bar-1" style="width:{{this.perReview1}}%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="number-start">{{this.count1}}</div>
+                                        </div>
+                                    </div>
+                                    {{/with}}
+                                    <div class="product_evaluate-title-colunmn-btn">
+                                        <p>Trải nghiệm khi sử dụng sản phẩm?</p>
+                                        {{#unless user}}
+                                            <button class="btn btn-xl btn-danger" id="btn-raiting" type="button" disabled>Gởi đánh giá của bạn</button>
+                                            <p class="mt-3"><b>Bạn cần đăng nhập để đánh giá sản phẩm!</b></p>
+                                        {{else}}
+                                            {{#if checkProductReview}}
+                                                <button class="btn btn-xl btn-danger" id="btn-raiting" type="button" disabled>Gởi đánh giá của bạn</button>
+                                                <p class="mt-3"><b>Bạn đã đánh giá sản phẩm này!</b></p>
+                                            {{else if productInOrder}}
+                                                 <button class="btn btn-xl btn-danger" id="btn-raiting" type="button">Gởi đánh giá của bạn</button>
+                                                    
+                                            {{else}}
+                                                <button class="btn btn-xl btn-danger" id="btn-raiting" type="button" disabled>Gởi đánh giá của bạn</button>
+                                                <p class="mt-3"><b>Bạn chỉ có thể đánh giá khi đã mua sản phẩm này!</b></p>
+                                            {{/if}}
+                                        {{/unless}}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!--  -->
+                            {{#with product}}
+                            <form action="/product/review/{{this._id}}" method="POST">
+                                <div class="detail-product-contain-content-left-product_evaluate-send mt-5" id="form-raiting-hidden" hidden>
+                                    <div class="product_evaluate-send-start">
+                                        <h5>Bạn chấm sản phẩm này bao nhiêu sao?</h5>
+                                        <div class="input-rating">
+                                            <div class="stars">
+                                                <input id="star5" name="rating" value="5" type="radio"><label
+                                                    for="star5"></label>
+                                                <input id="star4" name="rating" value="4" type="radio"><label
+                                                    for="star4"></label>
+                                                <input id="star3" name="rating" value="3" type="radio"><label
+                                                    for="star3"></label>
+                                                <input id="star2" name="rating" value="2" type="radio"><label
+                                                    for="star2"></label>
+                                                <input id="star1" name="rating" value="1" type="radio"><label
+                                                    for="star1"></label>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="product_evaluate-send-form">
+                                        <div class="mb-2 text-center tag-area">
+                                            <!-- <label for="exampleFormControlTextarea1" class="form-label"></label> -->
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Sản phẩm này có tốt không? Tại sao?" name="content"></textarea>
+                                        </div>
+                                        
+                                        <div class="text-center button-area">
+                                            <button type="subbit" class="btn btn-danger">Gởi đánh giá</button>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                </div>
+                            </form>
+                            {{/with}}
+                            <!--  -->
+                            <div class="detail-product-contain-content-left-product_evaluate-content mt-5">
+                                {{#each rate}}
+                                    <ul class="content-item content-item-rate-hidden">
+                                        <li><h5>{{this.hoten}}</h5></li>
+                                        <li>
+                                            <i class="fa-solid fa-star {{#if (ifleq 1 this.sosao)}}star-active{{/if}}"></i>
+                                            <i class="fa-solid fa-star {{#if (ifleq 2 this.sosao)}}star-active{{/if}}"></i>
+                                            <i class="fa-solid fa-star {{#if (ifleq 3 this.sosao)}}star-active{{/if}}"></i>
+                                            <i class="fa-solid fa-star {{#if (ifleq 4 this.sosao)}}star-active{{/if}}"></i>
+                                            <i class="fa-solid fa-star {{#if (ifleq 5 this.sosao)}}star-active{{/if}}"></i>
+                                        </li>
+                                        <li>{{this.noidung}}</li>
+                                        <li><i class="fa-solid fa-thumbs-up color-blue"></i> Thích (0)</li>
+                                        <hr>
+                                    </ul>
+                                    {{!-- <hr> --}}
+                                {{/each}}
+                                {{!-- <nav aria-label="nav-pagging" class="mt-5 text-center">
+                                    <ul class="pagination justify-content-center" id="pagination">
+                
+                                    </ul>
+                                </nav> --}}
+                                <div class="text-center">
+                                    <button class="btn btn-danger" id="btn-loadRateMore">Xem thêm đánh giá</button>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-danger" id="btn-hiddenRate" style="display: none;">Ẩn đánh giá</button>
+                                </div>
+                            </div>
+                </section>
+                <section class="detail-product-contain-product-relative">
+                    <div class="detail-product-contain-product-relative-title">
+                        <h2>SẢN PHẨM LIÊN QUAN</h2>
+                    </div>
+                    <div class="detail-product-contain-product-relative-items">
+                         {{#each productRelated}}
+                        <div class="slider-product-one-content-item">
+                            <img src="/images/products/{{this.hinhanh}}" alt="">
+                            <a href="/product/{{this.slug}}">
+                                <div class="slider-product-one-content-item-text">
+                                    <li><img src="/images/icon1.png" alt=""><p>Sản phẩm khuyến mãi</p></li>
+                                    <li><span class="title-product">{{this.tensanpham}}</span></li>
+                                    <li><span>Online giá rẻ</span></li>
+                                    <li><span class="price-old">{{convertPrice this.giagoc}} <sup>đ</sup></span><span> {{convertPrice this.giam}}%</span></li>
+                                    <li><span class="price-new">{{convertPrice this.gia}} <sup>đ</sup></span></li>
+                                    <li><span>Quà 400.000 <sup>đ</sup></span></li>
+                                    <li>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </li>
+                                </div>
+                            </a>
+                            
+                           
+                        </div>
+                         {{/each}}
+                    </div>
+                </section>
+            </div>
+            
+        </div>
+    </section>
+
+<script>
+    function toastSuccess(){
+            
+            toast(
+                'Thành công',
+                'Bạn vừa thêm sản phẩm vào giỏ hàng',
+                'success',
+                3500
+            );
+    }
+     function toastError(){
+            
+            toast(
+                'Thất bại',
+                'Thêm sản phẩm thất bại, sản phẩm đã hết!',
+                'error',
+                3500
+            );
+    }
+     function toastWarn(){
+            
+            toast(
+                'Không thành công',
+                'Bạn cần đăng nhập trước khi thêm sản phẩm vào giỏ!',
+                'warning',
+                3500
+            );
+    }
+  
+</script>
+{{!-- send data with ajax (add product to cart) --}}
+<script>
+   $( document ).ready(function(e) {
+    
+      $('.btn-add-product-to-cart').click(function(e){
+            e.preventDefault();
+                
+            let idProduct = $(this).val();
+                
+
+            $.ajax({
+                url: "/cart/addtocart",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({idProduct}),
+                success: function(res){
+                    if(res.notLogin){
+                        toastWarn();
+                    }else{
+                        if(res.status){
+                            toastSuccess();
+                        }else{
+                            toastError();
+                        }
+                    }
+                   
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });  
+        });// click
+
+    });
+</script>

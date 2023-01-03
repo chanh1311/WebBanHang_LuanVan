@@ -1,0 +1,110 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin/add-account.css">
+     
+</head>
+<body>
+    <div class="main">
+        <form action="/admin/add-account" method="POST" class="form" id="form-add-account">
+         {{#if message}}
+            <div class="alert alert-success" role="alert">
+              {{message}}
+          </div>
+          {{/if}}
+          <h3 class="heading">THÊM TÀI KHOẢN</h3>
+          <h6 class="desc">Thêm tài khoản quản trị</h6>
+      
+          <div class="spacer"></div>
+      
+          <div class="form-group">
+            <label for="fullname" class="form-label">Tên đầy đủ</label>
+            <input id="fullname" name="fullname" type="text" placeholder="VD: Chánh Nguyễn" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input id="phone" name="phone" type="text" placeholder="VD: 0999999999" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="form-label">Địa chỉ</label>
+            <input id="address" name="address" type="text" placeholder="VD: TP.Cần Thơ" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+              <label for="permistion" class="form-label">Quyền hạn</label>
+              <div id="permistion" class="gender-custom permistion-custom align-items-center">
+                <div class="gender-item permistion-custom">
+                   <input name="permistion" type="radio" value="view" id="view">
+                  <label for="view">Xem</label><br>
+                </div>
+                <div  class="gender-item permistion-custom">
+                  <input name="permistion" type="radio" value="edit" id="edit">
+                  <label for="edit">Sửa</label><br>
+                </div> 
+                 
+              </div>
+              <span class="form-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+            <span class="form-message"></span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password_confirmation" class="form-label">Nhập lại mật khẩu</label>
+            <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
+            <span class="form-message"></span>
+          </div>
+
+        
+
+          <button class="form-submit">Thêm tài khoản</button>
+        </form>
+      </div>
+
+      <script src="/js/validator.js"></script>
+    <script>
+      // Mong muốn của chúng ta
+      // Truyền lần lượt các tham số bên này sang bên kia xử lý
+      // Truyền vào 3 tham số (form-selector,tag-error,rules[])
+      Validator({
+        form: '#form-add-account',
+        formGroup: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+          Validator.isRequired('#fullname'),
+          Validator.isRequired('#address'),
+          Validator.isRequired('#phone'),
+          Validator.isPhone('#phone',10),
+          Validator.isRequired('#email'),
+          Validator.isEmail('#email'),
+          Validator.isRequired('#password'),
+          Validator.isPassWord('#password',6),
+          Validator.isRequired('#password_confirmation'),
+          Validator.isConfirmed('#password_confirmation',function(){
+            return document.querySelector('#form-add-account #password').value
+          },'Mật khẩu nhập vào không chính xác!'),
+          Validator.isRequired('input[name="permistion"]'),
+        ],
+          
+      })
+    </script>
+   
+</body>
+</html>
