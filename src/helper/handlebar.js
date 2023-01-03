@@ -1,6 +1,7 @@
 var moment = require('moment');
 
-const Handlebars = require('Handlebars');
+const Handlebars = require('handlebars');
+//
 module.exports = {
     sum: (a, b) => a + b,
     sortAble: (field, sort) => {
