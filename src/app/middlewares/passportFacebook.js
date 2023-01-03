@@ -1,7 +1,7 @@
 const passport = require("passport");
 const passportFacebook = require("passport-facebook");
 
-
+require('dotenv').config({ path: 'src/config.env' });
 const User = require('../model/User');
 
 
@@ -9,8 +9,8 @@ let FacebookStrategy = passportFacebook.Strategy;
 
 let initPassportFacebook = () => {
     passport.use(new FacebookStrategy({
-        clientID:'1271550240307864',
-        clientSecret: 'fd7f1bc4ca79cc04d96f74e283a253fd',
+        clientID: process.env.clientID,
+        clientSecret: process.env.clientSecret,
         callbackURL: 'http://localhost:3000/user/auth/facebook/cb',
         profileFields: ['email','gender','displayName']
     },(accessToken,refreshToken,profile,done) => {

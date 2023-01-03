@@ -1,8 +1,8 @@
-
+require('dotenv').config({ path: 'src/config.env' });
 const fetch = require("node-fetch");
  // loads env variables from .env file
 
-const { CLIENT_ID, APP_SECRET } = {CLIENT_ID: 'AS3S0RMHNo7ha3gq_GfZA010VHi0ZS9oowI09l9zjZm_5V8vxs5YaFVScIrPNShrM118QsHdXgqHNKZT',APP_SECRET: 'EJDbYsUs9iy2mk-b1UCygXvMw8wCSUCumKdHO3_okgjLjWbwyceYbzZ7o2X0pKxsaDyNAms0d3XhQfWY'};
+const { CLIENT_ID, APP_SECRET } = {CLIENT_ID: process.env.CLIENT_ID,APP_SECRET: process.env.APP_SECRET};
 const base = "https://api-m.sandbox.paypal.com";
 
 async function createOrder(totalUSD) {
