@@ -11,7 +11,7 @@ let initPassportFacebook = () => {
     passport.use(new FacebookStrategy({
         clientID: process.env.clientID,
         clientSecret: process.env.clientSecret,
-        callbackURL: 'http://localhost:3000/user/auth/facebook/cb',
+        callbackURL: '/user/auth/facebook/cb',
         profileFields: ['email','gender','displayName']
     },(accessToken,refreshToken,profile,done) => {
         
